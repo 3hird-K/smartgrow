@@ -20,11 +20,20 @@ export const metadata: Metadata = {
     siteName: "SmartGrow",
     locale: "en_US",
     type: "website",
+    images: [
+      {
+        url: "/og-main.png",
+        width: 1200,
+        height: 630,
+        alt: "SmartGrow — IoT Greenhouse Dashboard",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "SmartGrow — IoT Smart Greenhouse",
     description: "Real-time environmental monitoring for oyster mushroom cultivation with automated fan, fogger, and sprinkler control.",
+    images: ["/og-main.png"],
   },
   icons: {
     icon: "/icon.png",
