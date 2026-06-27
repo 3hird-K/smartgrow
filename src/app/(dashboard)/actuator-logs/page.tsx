@@ -16,6 +16,13 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import {
   Table,
   TableBody,
   TableCell,
@@ -286,34 +293,30 @@ export default function ActuatorLogsPage() {
               </CardDescription>
             </div>
             <div className="flex items-center gap-2">
-              <select
-                value={typeFilter}
-                onChange={(e) => {
-                  setTypeFilter(e.target.value);
-                  setPage(1);
-                }}
-                className="rounded-lg border border-border bg-card px-3 py-1.5 text-xs font-medium text-foreground focus:outline-none focus:ring-1 focus:ring-primary"
-              >
-                <option value="all">All Types</option>
-                <option value="fan">Fan</option>
-                <option value="fogger">Fogger</option>
-                <option value="sprinkler">Sprinkler</option>
-                <option value="led">LED Light</option>
-              </select>
-              <select
-                value={actionFilter}
-                onChange={(e) => {
-                  setActionFilter(e.target.value);
-                  setPage(1);
-                }}
-                className="rounded-lg border border-border bg-card px-3 py-1.5 text-xs font-medium text-foreground focus:outline-none focus:ring-1 focus:ring-primary"
-              >
-                <option value="all">All Actions</option>
-                <option value="activated">Activated</option>
-                <option value="deactivated">Deactivated</option>
-                <option value="error">Error</option>
-                <option value="maintenance">Maintenance</option>
-              </select>
+              <Select value={typeFilter} onValueChange={(v) => { setTypeFilter(v); setPage(1); }}>
+                <SelectTrigger className="w-[130px] h-8 text-xs font-medium bg-card border-border">
+                  <SelectValue placeholder="All Types" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">All Types</SelectItem>
+                  <SelectItem value="fan">Fan</SelectItem>
+                  <SelectItem value="fogger">Fogger</SelectItem>
+                  <SelectItem value="sprinkler">Sprinkler</SelectItem>
+                  <SelectItem value="led">LED Light</SelectItem>
+                </SelectContent>
+              </Select>
+              <Select value={actionFilter} onValueChange={(v) => { setActionFilter(v); setPage(1); }}>
+                <SelectTrigger className="w-[140px] h-8 text-xs font-medium bg-card border-border">
+                  <SelectValue placeholder="All Actions" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">All Actions</SelectItem>
+                  <SelectItem value="activated">Activated</SelectItem>
+                  <SelectItem value="deactivated">Deactivated</SelectItem>
+                  <SelectItem value="error">Error</SelectItem>
+                  <SelectItem value="maintenance">Maintenance</SelectItem>
+                </SelectContent>
+              </Select>
             </div>
           </div>
         </CardHeader>

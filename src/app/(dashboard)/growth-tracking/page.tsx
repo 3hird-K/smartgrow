@@ -18,6 +18,13 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import {
   Table,
   TableBody,
   TableCell,
@@ -364,36 +371,32 @@ export default function GrowthTrackingPage() {
                   className="rounded-lg border border-border bg-card pl-8 pr-3 py-1.5 text-xs font-medium text-foreground focus:outline-none focus:ring-1 focus:ring-primary w-48"
                 />
               </div>
-              <select
-                value={stageFilter}
-                onChange={(e) => {
-                  setStageFilter(e.target.value);
-                  setPage(1);
-                }}
-                className="rounded-lg border border-border bg-card px-3 py-1.5 text-xs font-medium text-foreground focus:outline-none focus:ring-1 focus:ring-primary"
-              >
-                <option value="all">All Stages</option>
-                <option value="inoculation">Inoculation</option>
-                <option value="incubation">Incubation</option>
-                <option value="primordia">Primordia</option>
-                <option value="fruiting">Fruiting</option>
-                <option value="harvest">Harvest</option>
-                <option value="completed">Completed</option>
-              </select>
-              <select
-                value={zoneFilter}
-                onChange={(e) => {
-                  setZoneFilter(e.target.value);
-                  setPage(1);
-                }}
-                className="rounded-lg border border-border bg-card px-3 py-1.5 text-xs font-medium text-foreground focus:outline-none focus:ring-1 focus:ring-primary"
-              >
-                <option value="all">All Zones</option>
-                <option value="Zone A">Zone A</option>
-                <option value="Zone B">Zone B</option>
-                <option value="Zone C">Zone C</option>
-                <option value="Zone D">Zone D</option>
-              </select>
+              <Select value={stageFilter} onValueChange={(v) => { setStageFilter(v); setPage(1); }}>
+                <SelectTrigger className="w-[140px] h-8 text-xs font-medium bg-card border-border">
+                  <SelectValue placeholder="All Stages" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">All Stages</SelectItem>
+                  <SelectItem value="inoculation">Inoculation</SelectItem>
+                  <SelectItem value="incubation">Incubation</SelectItem>
+                  <SelectItem value="primordia">Primordia</SelectItem>
+                  <SelectItem value="fruiting">Fruiting</SelectItem>
+                  <SelectItem value="harvest">Harvest</SelectItem>
+                  <SelectItem value="completed">Completed</SelectItem>
+                </SelectContent>
+              </Select>
+              <Select value={zoneFilter} onValueChange={(v) => { setZoneFilter(v); setPage(1); }}>
+                <SelectTrigger className="w-[130px] h-8 text-xs font-medium bg-card border-border">
+                  <SelectValue placeholder="All Zones" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">All Zones</SelectItem>
+                  <SelectItem value="Zone A">Zone A</SelectItem>
+                  <SelectItem value="Zone B">Zone B</SelectItem>
+                  <SelectItem value="Zone C">Zone C</SelectItem>
+                  <SelectItem value="Zone D">Zone D</SelectItem>
+                </SelectContent>
+              </Select>
             </div>
           </div>
         </CardHeader>

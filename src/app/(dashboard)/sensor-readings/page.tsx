@@ -15,6 +15,13 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import {
   Table,
   TableBody,
   TableCell,
@@ -303,33 +310,29 @@ export default function SensorReadingsPage() {
               </CardDescription>
             </div>
             <div className="flex items-center gap-2">
-              <select
-                value={zoneFilter}
-                onChange={(e) => {
-                  setZoneFilter(e.target.value);
-                  setPage(1);
-                }}
-                className="rounded-lg border border-border bg-card px-3 py-1.5 text-xs font-medium text-foreground focus:outline-none focus:ring-1 focus:ring-primary"
-              >
-                <option value="all">All Zones</option>
-                <option value="Zone A">Zone A</option>
-                <option value="Zone B">Zone B</option>
-                <option value="Zone C">Zone C</option>
-                <option value="Zone D">Zone D</option>
-              </select>
-              <select
-                value={statusFilter}
-                onChange={(e) => {
-                  setStatusFilter(e.target.value);
-                  setPage(1);
-                }}
-                className="rounded-lg border border-border bg-card px-3 py-1.5 text-xs font-medium text-foreground focus:outline-none focus:ring-1 focus:ring-primary"
-              >
-                <option value="all">All Status</option>
-                <option value="normal">Normal</option>
-                <option value="warning">Warning</option>
-                <option value="critical">Critical</option>
-              </select>
+              <Select value={zoneFilter} onValueChange={(v) => { setZoneFilter(v); setPage(1); }}>
+                <SelectTrigger className="w-[130px] h-8 text-xs font-medium bg-card border-border">
+                  <SelectValue placeholder="All Zones" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">All Zones</SelectItem>
+                  <SelectItem value="Zone A">Zone A</SelectItem>
+                  <SelectItem value="Zone B">Zone B</SelectItem>
+                  <SelectItem value="Zone C">Zone C</SelectItem>
+                  <SelectItem value="Zone D">Zone D</SelectItem>
+                </SelectContent>
+              </Select>
+              <Select value={statusFilter} onValueChange={(v) => { setStatusFilter(v); setPage(1); }}>
+                <SelectTrigger className="w-[130px] h-8 text-xs font-medium bg-card border-border">
+                  <SelectValue placeholder="All Status" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">All Status</SelectItem>
+                  <SelectItem value="normal">Normal</SelectItem>
+                  <SelectItem value="warning">Warning</SelectItem>
+                  <SelectItem value="critical">Critical</SelectItem>
+                </SelectContent>
+              </Select>
             </div>
           </div>
         </CardHeader>

@@ -7,6 +7,7 @@ import {
   Thermometer,
   Fan,
   Sprout,
+  Users,
   Settings,
   HelpCircle,
   MoreVertical,
@@ -28,6 +29,7 @@ const navItems: NavItem[] = [
   { label: "Sensor Readings", icon: Thermometer, href: "/sensor-readings", section: "Monitoring" },
   { label: "Actuator Logs", icon: Fan, href: "/actuator-logs" },
   { label: "Growth Tracking", icon: Sprout, href: "/growth-tracking", section: "Cultivation" },
+  { label: "Users", icon: Users, href: "/users", section: "Administration" },
 ];
 
 export function SidebarContent({ collapsed = false, onItemClick }: { collapsed?: boolean; onItemClick?: () => void }) {
