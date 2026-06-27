@@ -23,10 +23,10 @@ import {
   MessageSquare, 
   Video, 
   FileText,
-  BrainCircuit,
-  Activity,
-  Syringe,
-  MapPin
+  Thermometer,
+  Fan,
+  Sprout,
+  Cpu
 } from "lucide-react";
 
 export default function GetHelpPage() {
@@ -35,7 +35,7 @@ export default function GetHelpPage() {
       <PageHeader
         supertitle="SUPPORT CENTER"
         title="Get Help & Documentation"
-        subtitle="Learn how to navigate SyncVet and maximize the impact of your veterinary operations."
+        subtitle="Learn how to navigate SmartGrow and get the most out of your IoT greenhouse monitoring system."
       />
 
       {/* Search Header */}
@@ -44,34 +44,34 @@ export default function GetHelpPage() {
           <div className="relative max-w-2xl mx-auto">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-muted-foreground" />
             <Input 
-              placeholder="Search for guides, system features, or troubleshooting..." 
+              placeholder="Search for guides, sensor setup, or troubleshooting..." 
               className="pl-10 h-12 bg-background/80 border-border/50 shadow-sm text-sm"
             />
           </div>
           <div className="mt-4 flex flex-wrap justify-center gap-2">
-            <Badge variant="secondary" className="bg-accent/50 text-[10px] font-bold uppercase tracking-widest cursor-pointer hover:bg-accent">Pet Registry</Badge>
-            <Badge variant="secondary" className="bg-accent/50 text-[10px] font-bold uppercase tracking-widest cursor-pointer hover:bg-accent">ML Forecasting</Badge>
-            <Badge variant="secondary" className="bg-accent/50 text-[10px] font-bold uppercase tracking-widest cursor-pointer hover:bg-accent">Risk Scoring</Badge>
-            <Badge variant="secondary" className="bg-accent/50 text-[10px] font-bold uppercase tracking-widest cursor-pointer hover:bg-accent">Vaccine Stock</Badge>
+            <Badge variant="secondary" className="bg-accent/50 text-[10px] font-bold uppercase tracking-widest cursor-pointer hover:bg-accent">Sensor Setup</Badge>
+            <Badge variant="secondary" className="bg-accent/50 text-[10px] font-bold uppercase tracking-widest cursor-pointer hover:bg-accent">Actuator Control</Badge>
+            <Badge variant="secondary" className="bg-accent/50 text-[10px] font-bold uppercase tracking-widest cursor-pointer hover:bg-accent">Growth Tracking</Badge>
+            <Badge variant="secondary" className="bg-accent/50 text-[10px] font-bold uppercase tracking-widest cursor-pointer hover:bg-accent">ESP32 Config</Badge>
           </div>
         </CardContent>
       </Card>
 
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {/* Core System Knowledge */}
+        {/* ESP32 & Sensor Setup */}
         <Card className="border-border/50 bg-card/50 backdrop-blur-sm">
           <CardHeader className="pb-3">
             <div className="size-8 rounded-lg bg-primary/10 flex items-center justify-center mb-2">
-              <BrainCircuit className="size-4 text-primary" />
+              <Thermometer className="size-4 text-primary" />
             </div>
-            <CardTitle className="text-base font-bold tracking-tight">Understanding ML Forecasting</CardTitle>
+            <CardTitle className="text-base font-bold tracking-tight">ESP32 & Sensor Setup</CardTitle>
             <CardDescription className="text-[11px] font-medium text-muted-foreground/60 leading-relaxed">
-              SyncVet uses historical data to predict current month demand. Learn how the confidence interval and trend decomposition models work.
+              How the DHT22 sensors connect to the ESP32 microcontroller, and how temperature, humidity, CO₂, and soil moisture readings are collected across greenhouse zones.
             </CardDescription>
           </CardHeader>
           <CardContent>
             <Button variant="link" className="p-0 h-auto text-[11px] font-bold uppercase tracking-widest text-primary hover:no-underline">
-              Read ML Guide →
+              Read Sensor Guide →
             </Button>
           </CardContent>
         </Card>
@@ -79,16 +79,16 @@ export default function GetHelpPage() {
         <Card className="border-border/50 bg-card/50 backdrop-blur-sm">
           <CardHeader className="pb-3">
             <div className="size-8 rounded-lg bg-orange-500/10 flex items-center justify-center mb-2">
-              <Activity className="size-4 text-orange-500" />
+              <Fan className="size-4 text-orange-500" />
             </div>
-            <CardTitle className="text-base font-bold tracking-tight">Barangay Risk Scoring</CardTitle>
+            <CardTitle className="text-base font-bold tracking-tight">Actuator Automation</CardTitle>
             <CardDescription className="text-[11px] font-medium text-muted-foreground/60 leading-relaxed">
-              How risk scores are calculated based on rabies cases, stray population, and vaccination coverage gaps across CDO.
+              How fans, foggers, sprinklers, and LED grow lights are automatically triggered by the ESP32 based on real-time environmental thresholds.
             </CardDescription>
           </CardHeader>
           <CardContent>
             <Button variant="link" className="p-0 h-auto text-[11px] font-bold uppercase tracking-widest text-orange-500 hover:no-underline">
-              View Risk Methodology →
+              View Automation Logic →
             </Button>
           </CardContent>
         </Card>
@@ -96,16 +96,16 @@ export default function GetHelpPage() {
         <Card className="border-border/50 bg-card/50 backdrop-blur-sm">
           <CardHeader className="pb-3">
             <div className="size-8 rounded-lg bg-emerald-500/10 flex items-center justify-center mb-2">
-              <Syringe className="size-4 text-emerald-500" />
+              <Sprout className="size-4 text-emerald-500" />
             </div>
-            <CardTitle className="text-base font-bold tracking-tight">Field Operations Sync</CardTitle>
+            <CardTitle className="text-base font-bold tracking-tight">Mushroom Growth Tracking</CardTitle>
             <CardDescription className="text-[11px] font-medium text-muted-foreground/60 leading-relaxed">
-              Best practices for mobile teams to sync vaccination data from field drives back to the central CVO registry.
+              How to track cultivation batches through inoculation, incubation, primordia, fruiting, and harvest stages — including health scores and yield estimation.
             </CardDescription>
           </CardHeader>
           <CardContent>
             <Button variant="link" className="p-0 h-auto text-[11px] font-bold uppercase tracking-widest text-emerald-500 hover:no-underline">
-              Sync Procedures →
+              Growth Guide →
             </Button>
           </CardContent>
         </Card>
@@ -120,27 +120,33 @@ export default function GetHelpPage() {
           <CardContent>
             <Accordion type="single" collapsible className="w-full">
               <AccordionItem value="item-1">
-                <AccordionTrigger>How do I add a new pet to the registry?</AccordionTrigger>
+                <AccordionTrigger>What is the ideal temperature and humidity range for mushroom growing?</AccordionTrigger>
                 <AccordionContent>
-                  Navigate to the &quot;Pet Registry&quot; tab and click the &quot;Add Pet&quot; button. You&apos;ll need the owner&apos;s details, pet info, and initial vaccination status.
+                  The optimal temperature range is 24–28°C and humidity should stay between 80–95% RH. The dashboard will display an &quot;Optimal&quot; or &quot;Ideal Range&quot; badge when readings fall within these thresholds.
                 </AccordionContent>
               </AccordionItem>
               <AccordionItem value="item-2">
-                <AccordionTrigger>What do the confidence intervals in the charts mean?</AccordionTrigger>
+                <AccordionTrigger>How does the ESP32 trigger actuators automatically?</AccordionTrigger>
                 <AccordionContent>
-                  The shaded area represents the 80% confidence band. If the line stays within this area, demand is following historical patterns.
+                  The ESP32 reads sensor data every 2 hours. When temperature exceeds 28°C, the fan activates automatically. When humidity drops below 80%, the fogger turns on. You can also set scheduled triggers or activate actuators manually from the Actuator Logs page.
                 </AccordionContent>
               </AccordionItem>
               <AccordionItem value="item-3">
-                <AccordionTrigger>How is the &quot;High Risk&quot; status triggered for a Barangay?</AccordionTrigger>
+                <AccordionTrigger>What do the growth stages (inoculation, incubation, fruiting) mean?</AccordionTrigger>
                 <AccordionContent>
-                  A Barangay is flagged as high risk if its vaccination coverage falls below 70% or if a rabies case is reported within 3km in the last 6 months.
+                  Each mushroom batch goes through 6 lifecycle stages: Inoculation (spawning), Incubation (mycelium colonisation), Primordia (pinning), Fruiting (mushroom body development), Harvest (picking), and Completed. The Growth Tracking page shows the current stage, progress percentage, and estimated harvest date for each batch.
                 </AccordionContent>
               </AccordionItem>
               <AccordionItem value="item-4">
-                <AccordionTrigger>Can I export the analytics reports to PDF?</AccordionTrigger>
+                <AccordionTrigger>What does the &quot;Warning&quot; or &quot;Critical&quot; status mean on a sensor reading?</AccordionTrigger>
                 <AccordionContent>
-                  Yes, every analytics card has an export button in the top right corner. You can export individual charts or the entire monthly summary as a PDF.
+                  A &quot;Warning&quot; status means the reading is slightly outside the optimal range but not yet harmful. A &quot;Critical&quot; status indicates a dangerous threshold has been reached — such as temperature above 32°C or humidity below 60% — which may damage the mushroom crop if not addressed immediately.
+                </AccordionContent>
+              </AccordionItem>
+              <AccordionItem value="item-5">
+                <AccordionTrigger>How do I view sensor data for a specific greenhouse zone?</AccordionTrigger>
+                <AccordionContent>
+                  Navigate to the Sensor Readings page and use the zone filter dropdown (Zone A, B, C, or D) to view readings from a specific area. You can also filter by status (Normal, Warning, Critical) to quickly find problem areas.
                 </AccordionContent>
               </AccordionItem>
             </Accordion>
@@ -153,7 +159,7 @@ export default function GetHelpPage() {
             <CardHeader className="pb-3">
               <CardTitle className="text-lg font-bold tracking-tight">Still need help?</CardTitle>
               <CardDescription className="text-[11px] font-medium text-muted-foreground/60">
-                Contact the CVO IT Support Desk for technical issues.
+                Reach out for technical support with your SmartGrow system.
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-3">
@@ -167,15 +173,15 @@ export default function GetHelpPage() {
               <Button variant="outline" className="w-full justify-start gap-3 border-border/50 h-10">
                 <Video className="size-4 text-orange-500" />
                 <div className="text-left">
-                  <p className="text-xs font-bold">Watch Training Videos</p>
-                  <p className="text-[10px] text-muted-foreground">Master the system in 15 mins</p>
+                  <p className="text-xs font-bold">Watch Setup Tutorials</p>
+                  <p className="text-[10px] text-muted-foreground">ESP32 wiring & sensor calibration guides</p>
                 </div>
               </Button>
               <Button variant="outline" className="w-full justify-start gap-3 border-border/50 h-10">
                 <FileText className="size-4 text-emerald-500" />
                 <div className="text-left">
                   <p className="text-xs font-bold">Download User Manual</p>
-                  <p className="text-[10px] text-muted-foreground">Comprehensive PDF guide (v2.4)</p>
+                  <p className="text-[10px] text-muted-foreground">Comprehensive PDF guide (v1.0)</p>
                 </div>
               </Button>
             </CardContent>
@@ -183,11 +189,11 @@ export default function GetHelpPage() {
           
           <div className="p-6 rounded-xl border border-primary/20 bg-primary/5 flex items-center gap-4">
             <div className="size-10 rounded-full bg-primary/20 flex items-center justify-center shrink-0">
-              <HelpCircle className="size-5 text-primary" />
+              <Cpu className="size-5 text-primary" />
             </div>
             <div>
-              <p className="text-[13px] font-bold text-foreground">System Version 2.4.0-Stable</p>
-              <p className="text-[11px] text-muted-foreground">Your system is up to date with the latest Cagayan de Oro City Veterinary protocols.</p>
+              <p className="text-[13px] font-bold text-foreground">SmartGrow v1.0.0 — ESP32 Connected</p>
+              <p className="text-[11px] text-muted-foreground">Your greenhouse monitoring system is running the latest firmware and dashboard build.</p>
             </div>
           </div>
         </div>
