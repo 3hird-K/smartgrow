@@ -98,7 +98,7 @@ export default function GetHelpPage() {
             <div className="size-8 rounded-lg bg-emerald-500/10 flex items-center justify-center mb-2">
               <Sprout className="size-4 text-emerald-500" />
             </div>
-            <CardTitle className="text-base font-bold tracking-tight">Mushroom Growth Tracking</CardTitle>
+            <CardTitle className="text-base font-bold tracking-tight">Oyster Mushroom Growth Tracking</CardTitle>
             <CardDescription className="text-[11px] font-medium text-muted-foreground/60 leading-relaxed">
               How to track cultivation batches through inoculation, incubation, primordia, fruiting, and harvest stages — including health scores and yield estimation.
             </CardDescription>
@@ -120,7 +120,7 @@ export default function GetHelpPage() {
           <CardContent>
             <Accordion type="single" collapsible className="w-full">
               <AccordionItem value="item-1">
-                <AccordionTrigger>What is the ideal temperature and humidity range for mushroom growing?</AccordionTrigger>
+                <AccordionTrigger>What is the ideal temperature and humidity range for oyster mushroom growing?</AccordionTrigger>
                 <AccordionContent>
                   The optimal temperature range is 24–28°C and humidity should stay between 80–95% RH. The dashboard will display an &quot;Optimal&quot; or &quot;Ideal Range&quot; badge when readings fall within these thresholds.
                 </AccordionContent>
@@ -134,13 +134,13 @@ export default function GetHelpPage() {
               <AccordionItem value="item-3">
                 <AccordionTrigger>What do the growth stages (inoculation, incubation, fruiting) mean?</AccordionTrigger>
                 <AccordionContent>
-                  Each mushroom batch goes through 6 lifecycle stages: Inoculation (spawning), Incubation (mycelium colonisation), Primordia (pinning), Fruiting (mushroom body development), Harvest (picking), and Completed. The Growth Tracking page shows the current stage, progress percentage, and estimated harvest date for each batch.
+                  Each oyster mushroom batch goes through 6 lifecycle stages: Inoculation (spawning), Incubation (mycelium colonisation), Primordia (pinning), Fruiting (mushroom body development), Harvest (picking), and Completed. The Growth Tracking page shows the current stage, progress percentage, and estimated harvest date for each batch.
                 </AccordionContent>
               </AccordionItem>
               <AccordionItem value="item-4">
                 <AccordionTrigger>What does the &quot;Warning&quot; or &quot;Critical&quot; status mean on a sensor reading?</AccordionTrigger>
                 <AccordionContent>
-                  A &quot;Warning&quot; status means the reading is slightly outside the optimal range but not yet harmful. A &quot;Critical&quot; status indicates a dangerous threshold has been reached — such as temperature above 32°C or humidity below 60% — which may damage the mushroom crop if not addressed immediately.
+                  A &quot;Warning&quot; status means the reading is slightly outside the optimal range but not yet harmful. A &quot;Critical&quot; status indicates a dangerous threshold has been reached — such as temperature above 32°C or humidity below 60% — which may damage the oyster mushroom crop if not addressed immediately.
                 </AccordionContent>
               </AccordionItem>
               <AccordionItem value="item-5">

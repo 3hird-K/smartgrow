@@ -4,7 +4,7 @@ import { ActivityFeed } from "@/components/dashboard/activity-feed";
 import { DashboardHeader } from "@/components/dashboard/dashboard-header";
 import { PredictiveForecastBarChart } from "@/components/dashboard/predictive-forecast-bar-chart";
 import { MayForecastPie } from "@/components/dashboard/may-forecast-pie";
-import { VaccineStockGauge } from "@/components/dashboard/capacity-gauge";
+import { ActuatorCapacityGauge } from "@/components/dashboard/capacity-gauge";
 import {
   Card,
   CardContent,
@@ -84,7 +84,7 @@ export default function Home() {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <VaccineStockGauge />
+          <ActuatorCapacityGauge />
         </CardContent>
       </Card>
     </div>

@@ -11,10 +11,10 @@ import { WEEK7_FORECAST_ROW } from "./resource-forecast";
    ACTUATOR RUNTIME vs. CAPACITY
    ──────────────────────────────────────────────────────── */
 
-export type VaccineStockRow = {
-  vaccine: string;
-  forecastDoses: number;
-  currentStock: number;
+export type ActuatorUsageRow = {
+  actuator: string;
+  dailyRuntime: number;
+  maxCapacity: number;
   color: string;
 };
 
@@ -22,29 +22,29 @@ export type VaccineStockRow = {
  * Compares predicted actuator runtime demand against available daily capacity.
  * Managed by the ESP32 control system.
  */
-export const VACCINE_STOCK_DATA: VaccineStockRow[] = [
+export const ACTUATOR_USAGE_DATA: ActuatorUsageRow[] = [
   {
-    vaccine: "Fan (Cooling)",
-    forecastDoses: Math.round(WEEK7_FORECAST_ROW.fanRuntime * 6),
-    currentStock: 48,
+    actuator: "Fan (Cooling)",
+    dailyRuntime: Math.round(WEEK7_FORECAST_ROW.fanRuntime * 6),
+    maxCapacity: 48,
     color: "#38bdf8",
   },
   {
-    vaccine: "Fogger (Humidity)",
-    forecastDoses: Math.round(WEEK7_FORECAST_ROW.foggerRuntime * 5),
-    currentStock: 40,
+    actuator: "Fogger (Humidity)",
+    dailyRuntime: Math.round(WEEK7_FORECAST_ROW.foggerRuntime * 5),
+    maxCapacity: 40,
     color: "#10b981",
   },
   {
-    vaccine: "Sprinkler (Watering)",
-    forecastDoses: Math.round(WEEK7_FORECAST_ROW.fanRuntime * 2.5),
-    currentStock: 24,
+    actuator: "Sprinkler (Watering)",
+    dailyRuntime: Math.round(WEEK7_FORECAST_ROW.fanRuntime * 2.5),
+    maxCapacity: 24,
     color: "#a855f7",
   },
   {
-    vaccine: "Exhaust Vent (CO₂)",
-    forecastDoses: Math.round(WEEK7_FORECAST_ROW.fanRuntime * 3),
-    currentStock: 30,
+    actuator: "Exhaust Vent (CO₂)",
+    dailyRuntime: Math.round(WEEK7_FORECAST_ROW.fanRuntime * 3),
+    maxCapacity: 30,
     color: "#f59e0b",
   },
 ];

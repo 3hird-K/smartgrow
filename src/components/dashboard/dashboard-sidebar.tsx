@@ -11,6 +11,7 @@ import {
   Settings,
   HelpCircle,
   MoreVertical,
+  Cpu,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
@@ -26,6 +27,7 @@ type NavItem = {
 
 const navItems: NavItem[] = [
   { label: "Dashboard", icon: LayoutDashboard, href: "/" },
+  { label: "IoT Control", icon: Cpu, href: "/iot-control" },
   { label: "Sensor Readings", icon: Thermometer, href: "/sensor-readings", section: "Monitoring" },
   { label: "Actuator Logs", icon: Fan, href: "/actuator-logs" },
   { label: "Growth Tracking", icon: Sprout, href: "/growth-tracking", section: "Cultivation" },

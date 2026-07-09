@@ -1,29 +1,29 @@
 "use client";
 
-import { VACCINE_STOCK_DATA } from "@/data/forecast-advanced";
+import { ACTUATOR_USAGE_DATA } from "@/data/forecast-advanced";
 
 /**
  * Actuator Usage vs. Capacity gauge.
  * Shows each actuator's predicted runtime demand against available daily capacity,
  * helping the operator identify over-utilization before equipment issues arise.
  */
-export function VaccineStockGauge() {
+export function ActuatorCapacityGauge() {
   return (
     <div className="w-full space-y-5">
-      {VACCINE_STOCK_DATA.map((row) => {
+      {ACTUATOR_USAGE_DATA.map((row) => {
         const pct = Math.min(
           100,
-          Math.round((row.forecastDoses / row.currentStock) * 100),
+          Math.round((row.dailyRuntime / row.maxCapacity) * 100),
         );
         const isHighUsage = pct >= 85;
         const isOverCapacity = pct >= 95;
 
         return (
-          <div key={row.vaccine} className="space-y-1.5">
+          <div key={row.actuator} className="space-y-1.5">
             {/* Labels row */}
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 sm:gap-4 text-xs">
               <span className="font-bold text-foreground truncate">
-                {row.vaccine}
+                {row.actuator}
               </span>
               <div className="flex items-center gap-1 tabular-nums text-muted-foreground/80 flex-wrap">
                 <span
@@ -36,10 +36,10 @@ export function VaccineStockGauge() {
                       : row.color,
                   }}
                 >
-                  {row.forecastDoses}h
+                  {row.dailyRuntime}h
                 </span>
                 <span className="text-[10px] opacity-40">used /</span>
-                <span className="font-semibold">{row.currentStock}h</span>
+                <span className="font-semibold">{row.maxCapacity}h</span>
                 <span className="text-[10px] opacity-40">capacity</span>
                 <span className="ml-auto sm:ml-1 text-[10px] font-bold text-muted-foreground/60">
                   ({pct}%)

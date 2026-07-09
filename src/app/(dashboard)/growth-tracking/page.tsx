@@ -177,7 +177,7 @@ export default function GrowthTrackingPage() {
       <PageHeader
         supertitle="Cultivation"
         title="Growth Tracking"
-        subtitle="Track mushroom bag batches, colonisation rates, growth dimensions, and harvest yields."
+        subtitle="Track oyster mushroom bag batches, colonisation rates, growth dimensions, and harvest yields."
       />
 
       {/* Metric Cards */}
@@ -230,7 +230,7 @@ export default function GrowthTrackingPage() {
               Daily Growth Trend (Batch #4)
             </CardTitle>
             <CardDescription className="text-[11px] font-medium text-muted-foreground/60">
-              Mushroom height and cap diameter changes recorded daily over the last 28 days.
+              Oyster mushroom height and cap diameter changes recorded daily over the last 28 days.
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -269,7 +269,7 @@ export default function GrowthTrackingPage() {
                   <Line
                     type="monotone"
                     dataKey="height"
-                    name="Mushroom Height"
+                    name="Oyster Mushroom Height"
                     stroke="#10b981"
                     strokeWidth={2.5}
                     dot={false}
@@ -288,7 +288,7 @@ export default function GrowthTrackingPage() {
             <div className="flex flex-wrap items-center justify-center gap-6 text-xs text-muted-foreground mt-4">
               <span className="inline-flex items-center gap-2">
                 <span className="size-2 rounded-full bg-emerald-500" />
-                Mushroom Height (cm)
+                Oyster Mushroom Height (cm)
               </span>
               <span className="inline-flex items-center gap-2">
                 <span className="size-2 rounded-full bg-purple-500" />
@@ -354,7 +354,7 @@ export default function GrowthTrackingPage() {
                 Cultivation Batches
               </CardTitle>
               <CardDescription className="text-[11px] font-medium text-muted-foreground/60">
-                Detailed overview of mushroom bags, incubation progress, and yield history.
+                Detailed overview of oyster mushroom bags, incubation progress, and yield history.
               </CardDescription>
             </div>
             <div className="flex flex-wrap items-center gap-2">

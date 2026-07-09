@@ -52,28 +52,27 @@ export function AddBatchDialog() {
         <DialogHeader>
           <div className="flex items-center gap-2 text-primary">
             <PackagePlus className="size-5" />
-            <DialogTitle className="text-xl font-bold">Add Inventory Batch</DialogTitle>
+            <DialogTitle className="text-xl font-bold">Add Oyster Mushroom Batch</DialogTitle>
           </div>
           <DialogDescription className="text-xs text-muted-foreground">
-            Register a new vaccine batch into the CDO central storage or satellite units.
+            Register a new oyster mushroom fruiting bag batch into the greenhouse.
           </DialogDescription>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="grid gap-4 py-4">
           <div className="grid grid-cols-2 gap-4">
             <div className="grid gap-2">
-              <Label htmlFor="vaccine" className="text-[10px] font-bold uppercase tracking-widest">
-                Vaccine Product
+              <Label htmlFor="mushroom" className="text-[10px] font-bold uppercase tracking-widest">
+                Strain Type
               </Label>
-              <Select defaultValue="anti-rabies">
-                <SelectTrigger id="vaccine" className="h-9 text-xs">
-                  <SelectValue placeholder="Select product" />
+              <Select defaultValue="oyster-pearl">
+                <SelectTrigger id="mushroom" className="h-9 text-xs">
+                  <SelectValue placeholder="Select strain" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="anti-rabies">Anti-Rabies (Canine)</SelectItem>
-                  <SelectItem value="anti-rabies-feline">Anti-Rabies (Feline)</SelectItem>
-                  <SelectItem value="parvovirus">Anti-Parvovirus</SelectItem>
-                  <SelectItem value="deworming-oral">Deworming (Oral)</SelectItem>
-                  <SelectItem value="deworming-inject">Deworming (Injectable)</SelectItem>
+                  <SelectItem value="oyster-pearl">Pearl Oyster</SelectItem>
+                  <SelectItem value="oyster-blue">Blue Oyster</SelectItem>
+                  <SelectItem value="oyster-pink">Pink Oyster</SelectItem>
+                  <SelectItem value="oyster-king">King Oyster</SelectItem>
                 </SelectContent>
               </Select>
             </div>
@@ -83,7 +82,7 @@ export function AddBatchDialog() {
               </Label>
               <Input
                 id="batch"
-                placeholder="e.g. AR-Q3-2026-016"
+                placeholder="e.g. OM-2026-016"
                 className="h-9 text-xs font-mono"
                 required
               />
@@ -92,7 +91,7 @@ export function AddBatchDialog() {
           <div className="grid grid-cols-3 gap-4">
             <div className="grid gap-2">
               <Label htmlFor="stock" className="text-[10px] font-bold uppercase tracking-widest">
-                Initial Stock
+                Fruiting Bags Count
               </Label>
               <Input
                 id="stock"
@@ -127,18 +126,16 @@ export function AddBatchDialog() {
           </div>
           <div className="grid gap-2">
             <Label htmlFor="storage" className="text-[10px] font-bold uppercase tracking-widest">
-              Storage Location
+              Greenhouse Zone
             </Label>
             <Select defaultValue="zone1">
               <SelectTrigger id="storage" className="h-9 text-xs">
-                <SelectValue placeholder="Select location" />
+                <SelectValue placeholder="Select zone" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="zone1">CDO Central — Zone 1 (Cold Room)</SelectItem>
-                <SelectItem value="zone2">CDO Central — Zone 2</SelectItem>
-                <SelectItem value="lapasan">Brgy. Lapasan Satellite</SelectItem>
-                <SelectItem value="carmen">Brgy. Carmen Satellite</SelectItem>
-                <SelectItem value="bulua">Brgy. Bulua Satellite</SelectItem>
+                <SelectItem value="zone1">Zone A (Incubation)</SelectItem>
+                <SelectItem value="zone2">Zone B (Fruiting)</SelectItem>
+                <SelectItem value="zone3">Zone C (Harvesting)</SelectItem>
               </SelectContent>
             </Select>
           </div>
