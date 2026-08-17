@@ -46,20 +46,27 @@ export function Navbar() {
     const onScroll = () => {
       setScrolled(window.scrollY > 20);
 
-      const sections = ["home", "how-it-works", "monitoring", "automation", "cultivation", "zones"];
-      const scrollPosition = window.scrollY + 140;
+      const sections = [
+        "home",
+        "why-smartgrow",
+        "how-it-works",
+        "monitoring",
+        "automation",
+        "cultivation",
+      ];
+      const scrollPosition = window.scrollY + 180;
 
-      for (const section of sections) {
-        const el = document.getElementById(section);
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const el = document.getElementById(sections[i]);
         if (el) {
           const top = el.offsetTop;
-          const height = el.offsetHeight;
-          if (scrollPosition >= top && scrollPosition < top + height) {
-            setActiveSection(section);
-            break;
+          if (scrollPosition >= top) {
+            setActiveSection(sections[i]);
+            return;
           }
         }
       }
+      setActiveSection("home");
     };
 
     onScroll();
@@ -88,8 +95,8 @@ export function Navbar() {
         >
           <Brand />
 
-          {/* Desktop Nav Links */}
-          <div className="hidden items-center gap-1 md:flex rounded-full bg-muted/50 dark:bg-muted/30 p-1 border border-border/50">
+          {/* Desktop Nav Links (>= 1024px) */}
+          <div className="hidden items-center gap-1 lg:flex rounded-full bg-muted/50 dark:bg-muted/30 p-1 border border-border/50">
             {navLinks.map((link) => {
               const isActive = activeSection === link.href.replace("#", "");
               return (
@@ -99,7 +106,7 @@ export function Navbar() {
                   className={cn(
                     "rounded-full px-3.5 py-1.5 text-xs font-semibold tracking-tight transition-all duration-200",
                     isActive
-                      ? "bg-background text-emerald-700 dark:text-emerald-300 dark:bg-accent shadow-sm shadow-black/10 font-bold"
+                      ? "bg-background text-emerald-700 dark:text-emerald-300 dark:bg-accent shadow-xs font-bold"
                       : "text-muted-foreground hover:text-foreground hover:bg-background/50 dark:hover:bg-accent/40",
                   )}
                 >
@@ -109,45 +116,58 @@ export function Navbar() {
             })}
           </div>
 
-          {/* Action Buttons */}
-          <div className="hidden items-center gap-2 md:flex">
-            <Button
-              variant="ghost"
-              size="sm"
-              className="text-xs font-semibold text-muted-foreground hover:text-foreground hover:bg-accent rounded-full px-3.5"
-              asChild
-            >
-              <Link href="/dashboard">Sign In</Link>
-            </Button>
-            <Button
-              size="sm"
-              className="text-xs font-semibold shadow-xs shadow-primary/20 rounded-full px-4 py-1.5"
-              asChild
-            >
-              <Link href="/dashboard">
-                Sign Up
-              </Link>
-            </Button>
-          </div>
+          {/* Action Buttons & Menu Trigger */}
+          <div className="flex items-center gap-2">
+            {/* Desktop Action Buttons (>= 1024px) */}
+            <div className="hidden items-center gap-2 lg:flex">
+              <Button
+                variant="ghost"
+                size="sm"
+                className="text-xs font-semibold text-muted-foreground hover:text-foreground hover:bg-accent rounded-full px-3.5"
+                asChild
+              >
+                <Link href="/dashboard">Sign In</Link>
+              </Button>
+              <Button
+                size="sm"
+                className="text-xs font-semibold shadow-xs shadow-primary/20 rounded-full px-4 py-1.5"
+                asChild
+              >
+                <Link href="/dashboard">
+                  Sign Up
+                </Link>
+              </Button>
+            </div>
 
-          {/* Mobile Menu Trigger */}
-          <div className="flex items-center md:hidden">
-            <Button
-              variant="ghost"
-              size="icon"
-              className="size-8.5 rounded-xl text-foreground hover:bg-accent"
-              aria-expanded={open}
-              aria-label={open ? "Close menu" : "Open menu"}
-              onClick={() => setOpen((o) => !o)}
-            >
-              {open ? <X className="size-5" /> : <Menu className="size-5" />}
-            </Button>
+            {/* Mobile / Tablet Menu & Quick Action (< 1024px) */}
+            <div className="flex items-center gap-1.5 lg:hidden">
+              <Button
+                size="sm"
+                className="h-8 rounded-full px-3 text-[11px] font-semibold shadow-xs shadow-primary/20"
+                asChild
+              >
+                <Link href="/dashboard">
+                  Sign Up
+                </Link>
+              </Button>
+              
+              <Button
+                variant="ghost"
+                size="icon"
+                className="size-8.5 rounded-xl text-foreground hover:bg-accent"
+                aria-expanded={open}
+                aria-label={open ? "Close menu" : "Open menu"}
+                onClick={() => setOpen((o) => !o)}
+              >
+                {open ? <X className="size-5" /> : <Menu className="size-5" />}
+              </Button>
+            </div>
           </div>
         </nav>
 
-        {/* Mobile Drawer (Floating card below navbar) */}
+        {/* Mobile / Tablet Drawer (Floating card below navbar) */}
         {open && (
-          <div className="mt-2 rounded-2xl border border-border bg-background/95 dark:bg-card/95 backdrop-blur-2xl p-4 shadow-2xl md:hidden animate-in fade-in slide-in-from-top-2 duration-200">
+          <div className="mt-2 rounded-2xl border border-border bg-background/95 dark:bg-card/95 backdrop-blur-2xl p-4 shadow-2xl lg:hidden animate-in fade-in slide-in-from-top-2 duration-200">
             <div className="space-y-1">
               {navLinks.map((link) => (
                 <a
@@ -164,15 +184,10 @@ export function Navbar() {
                   {link.label}
                 </a>
               ))}
-              <div className="flex flex-col gap-2 pt-3 border-t border-border mt-3">
+              <div className="pt-2 border-t border-border mt-2">
                 <Button variant="outline" size="sm" className="w-full text-xs font-semibold rounded-xl" asChild>
                   <Link href="/dashboard" onClick={() => setOpen(false)}>
                     Sign In
-                  </Link>
-                </Button>
-                <Button size="sm" className="w-full text-xs font-semibold rounded-xl shadow-xs shadow-primary/20" asChild>
-                  <Link href="/dashboard" onClick={() => setOpen(false)}>
-                    Sign Up
                   </Link>
                 </Button>
               </div>
