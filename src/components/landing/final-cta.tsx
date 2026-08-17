@@ -31,17 +31,17 @@ export function FinalCta() {
 
             <h2
               id="final-cta-heading"
-              className="mx-auto mt-6 max-w-2xl text-3xl font-black tracking-tight text-white sm:text-4xl lg:text-5xl leading-[1.12]"
+              className="mx-auto mt-6 max-w-2xl text-3xl font-extrabold tracking-tight text-white sm:text-4xl lg:text-[40px] leading-[1.12]"
             >
               Grow with better visibility.
             </h2>
             
-            <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-zinc-300 sm:text-lg">
+            <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-zinc-300 sm:text-base">
               Bring environmental monitoring, autonomous climate control, and oyster mushroom cultivation tracking into one connected greenhouse platform.
             </p>
 
             <div className="mt-8 flex flex-col items-center justify-center gap-3.5 sm:flex-row">
-              <Button size="lg" className="h-12 px-8 text-xs font-bold uppercase tracking-wider shadow-xl shadow-primary/30" asChild>
+              <Button className="h-10 px-6 text-xs font-bold uppercase tracking-wider shadow-xl shadow-primary/30 rounded-full" asChild>
                 <Link href="/dashboard">
                   Open SmartGrow Dashboard
                 </Link>

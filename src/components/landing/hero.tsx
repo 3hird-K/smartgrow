@@ -6,16 +6,16 @@ import {
   Cpu,
   Leaf,
   Layers,
-  Activity,
+  Gauge,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Reveal } from "./reveal";
 
 const trustItems = [
   { label: "ESP32 Telemetry", icon: Cpu },
-  { label: "DHT22 Climate Sensors", icon: Activity },
+  { label: "DHT22 Sensors", icon: Gauge },
   { label: "Multi-Zone Relays", icon: Layers },
-  { label: "Oyster Crop Lifecycle", icon: Leaf },
+  { label: "Oyster Lifecycle", icon: Leaf },
 ];
 
 export function Hero() {

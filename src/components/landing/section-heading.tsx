@@ -24,15 +24,15 @@ export function SectionHeading({
         className,
       )}
     >
-      <div className="inline-flex items-center gap-2 rounded-full border border-primary/25 bg-primary/10 px-3.5 py-1 text-[11px] font-bold uppercase tracking-[0.2em] text-primary shadow-sm shadow-primary/5">
+      <div className="inline-flex items-center gap-2 rounded-full border border-primary/25 bg-primary/10 px-3 py-0.5 text-[10px] font-bold uppercase tracking-[0.18em] text-primary shadow-xs">
         <span className="size-1.5 rounded-full bg-primary animate-pulse" />
         <span>{eyebrow}</span>
       </div>
-      <h2 className="mt-4 text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl lg:text-5xl leading-[1.12]">
+      <h2 className="mt-4 text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl lg:text-[40px] leading-[1.12]">
         {title}
       </h2>
       {description && (
-        <p className="mt-4 text-base leading-relaxed text-muted-foreground sm:text-lg max-w-2xl">
+        <p className="mt-3.5 text-sm leading-relaxed text-muted-foreground sm:text-base max-w-2xl">
           {description}
         </p>
       )}

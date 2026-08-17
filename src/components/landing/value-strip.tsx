@@ -39,10 +39,10 @@ export function ValueStrip() {
         <Reveal>
           <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 pb-8 border-b border-border/70">
             <div className="max-w-xl">
-              <span className="text-xs font-bold uppercase tracking-widest text-primary">
+              <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-primary">
                 NATURE + EMBEDDED PRECISION
               </span>
-              <h2 className="mt-2 text-2xl font-extrabold tracking-tight text-foreground sm:text-3xl">
+              <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl lg:text-[40px] leading-[1.12]">
                 Built for the conditions mushrooms actually need.
               </h2>
             </div>

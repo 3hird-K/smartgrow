@@ -5,15 +5,10 @@ import Link from "next/link";
 import {
   Droplets,
   Gauge,
-  Lightbulb,
-  Sun,
+  Layers,
+  Radio,
   Thermometer,
   Wind,
-  Layers,
-  Activity,
-  CheckCircle2,
-  AlertCircle,
-  Cpu,
 } from "lucide-react";
 import { SectionHeading } from "./section-heading";
 import { Reveal } from "./reveal";
@@ -25,14 +20,14 @@ const metricTabs = [
   {
     id: "temp",
     label: "Temperature",
-    value: "26.4",
+    value: "24.4",
     unit: "°C",
     icon: Thermometer,
     target: "24.0 – 28.0°C",
     status: "Optimal",
     delta: "+0.3°C vs 1h ago",
-    data: [25.6, 25.8, 26.1, 26.0, 26.3, 26.7, 27.2, 27.0, 26.6, 26.4, 26.3, 26.4],
-    avg: "26.3°C avg",
+    data: [24.0, 24.2, 24.5, 24.3, 24.4, 24.6, 24.8, 24.7, 24.5, 24.4, 24.3, 24.4],
+    avg: "24.4°C avg",
   },
   {
     id: "humidity",
@@ -43,8 +38,8 @@ const metricTabs = [
     target: "80 – 95% RH",
     status: "Optimal",
     delta: "Steady microclimate",
-    data: [86, 84, 83, 85, 87, 89, 91, 90, 88, 87, 88, 88],
-    avg: "87.5% avg",
+    data: [86, 85, 87, 88, 89, 90, 89, 88, 88, 87, 88, 88],
+    avg: "88% avg",
   },
   {
     id: "co2",
@@ -54,38 +49,36 @@ const metricTabs = [
     icon: Wind,
     target: "< 1000 ppm",
     status: "Safe",
-    delta: "Vent damper cycle normal",
-    data: [780, 750, 710, 680, 650, 630, 610, 600, 615, 625, 620, 620],
-    avg: "660 ppm avg",
+    delta: "Damper loop normal",
+    data: [720, 690, 660, 640, 630, 620, 615, 620, 625, 620, 618, 620],
+    avg: "625 ppm avg",
   },
   {
     id: "moisture",
-    label: "Substrate Moisture",
+    label: "Substrate",
     value: "74",
     unit: "%",
     icon: Gauge,
     target: "70 – 80%",
     status: "Optimal",
-    delta: "Bag sensor calibration OK",
-    data: [76, 75, 75, 74, 74, 73, 75, 76, 75, 74, 74, 74],
-    avg: "74.6% avg",
+    delta: "Moisture core stable",
+    data: [75, 75, 74, 74, 74, 73, 74, 75, 74, 74, 74, 74],
+    avg: "74% avg",
   },
 ];
 
 const monitoredCapabilities = [
-  { label: "Calibrated DHT22 Air Temp & RH", icon: Thermometer },
-  { label: "CO₂ Atmospheric Concentration", icon: Wind },
-  { label: "Substrate Bag Core Moisture", icon: Droplets },
-  { label: "Photoperiod Lighting Timing", icon: Lightbulb },
-  { label: "Zone-Specific Microclimate Alerts", icon: Activity },
-  { label: "Historical 24-Hour Cycle Logs", icon: Cpu },
+  { label: "Air Temperature & Humidity", icon: Thermometer },
+  { label: "CO₂ Atmospheric Levels", icon: Wind },
+  { label: "Substrate Core Moisture", icon: Gauge },
+  { label: "Multi-Zone Live Alerts", icon: Layers },
 ];
 
 const zoneStatuses = [
-  { name: "Zone A", role: "Fruiting Bay 1", temp: "26.4°C", rh: "88%", status: "Optimal", attention: false },
-  { name: "Zone B", role: "Fruiting Bay 2", temp: "25.8°C", rh: "91%", status: "Optimal", attention: false },
-  { name: "Zone C", role: "Incubation Bay", temp: "28.6°C", rh: "78%", status: "Attention", attention: true },
-  { name: "Zone D", role: "Primordia Pinning", temp: "24.9°C", rh: "92%", status: "Optimal", attention: false },
+  { name: "Zone A", role: "Fruiting Bay 1", temp: "24.4°C", rh: "88%", status: "Optimal" },
+  { name: "Zone B", role: "Fruiting Bay 2", temp: "25.2°C", rh: "90%", status: "Optimal" },
+  { name: "Zone C", role: "Incubation Bay", temp: "27.8°C", rh: "82%", status: "Optimal" },
+  { name: "Zone D", role: "Primordia Pinning", temp: "24.1°C", rh: "92%", status: "Optimal" },
 ];
 
 export function MonitoringPreview() {
@@ -96,28 +89,29 @@ export function MonitoringPreview() {
     <section
       id="monitoring"
       aria-labelledby="monitoring-heading"
-      className="py-20 sm:py-28"
+      className="py-16 sm:py-24"
     >
       <div className="mx-auto w-full max-w-7xl px-5 sm:px-8">
-        <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+        <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
           
           {/* Left Column: Explanatory Content */}
-          <div>
+          <div className="flex flex-col items-start">
             <SectionHeading
               align="left"
               eyebrow="Real-Time Monitoring"
               title="Know what's happening inside your greenhouse."
-              description="The SmartGrow live console turns raw sensor telemetry into instant microclimate visibility. Spot environmental drift before it stresses a mushroom batch."
+              description="Continuous sensor telemetry and instant microclimate visibility across all cultivation bays."
             />
 
-            <Reveal delay={100}>
-              <div className="mt-8 grid gap-3 sm:grid-cols-2">
+            {/* 4 Concise Capability Chips */}
+            <Reveal delay={100} className="w-full">
+              <div className="mt-6 grid grid-cols-1 gap-2.5 sm:grid-cols-2">
                 {monitoredCapabilities.map((m) => (
                   <div
                     key={m.label}
-                    className="flex items-center gap-3 rounded-xl border border-border/70 bg-muted/20 px-3.5 py-3 transition-colors hover:border-primary/30"
+                    className="flex items-center gap-2.5 rounded-2xl border border-border/70 bg-card p-3 shadow-2xs transition-colors hover:border-primary/40"
                   >
-                    <span className="flex size-7 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                    <span className="flex size-7 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
                       <m.icon className="size-3.5" strokeWidth={2.2} />
                     </span>
                     <span className="text-xs font-semibold text-foreground">
@@ -128,23 +122,15 @@ export function MonitoringPreview() {
               </div>
             </Reveal>
 
-            <Reveal delay={160}>
-              <div className="mt-7 flex items-center gap-2.5 rounded-xl border border-primary/20 bg-primary/[0.04] p-3.5 text-xs text-muted-foreground">
-                <Sun className="size-4 text-primary shrink-0" />
-                <span>
-                  Telemetry is calibrated specifically for <strong>Pleurotus ostreatus</strong> (oyster mushroom) fruiting parameters.
-                </span>
-              </div>
-            </Reveal>
-
-            <Reveal delay={220}>
-              <div className="mt-8 flex items-center gap-4">
-                <Button size="lg" className="h-11 px-6 text-xs font-bold uppercase tracking-wider" asChild>
+            {/* Action Buttons */}
+            <Reveal delay={180}>
+              <div className="mt-7 flex flex-wrap items-center gap-3">
+                <Button className="h-10 px-5 text-xs font-bold uppercase tracking-wider shadow-md shadow-primary/20 rounded-full" asChild>
                   <Link href="/dashboard">
                     Open Live Dashboard
                   </Link>
                 </Button>
-                <Button variant="outline" size="lg" className="h-11 px-6 text-xs font-bold uppercase tracking-wider" asChild>
+                <Button variant="outline" className="h-10 px-5 text-xs font-bold uppercase tracking-wider hover:bg-accent rounded-full" asChild>
                   <Link href="/dashboard/sensor-readings">
                     View Sensor Logs
                   </Link>
@@ -153,34 +139,28 @@ export function MonitoringPreview() {
             </Reveal>
           </div>
 
-          {/* Right Column: Browser-Grade Live Interactive Dashboard UI Preview */}
-          <Reveal delay={140} direction="left" className="relative">
+          {/* Right Column: Live Telemetry Hub Summary Window */}
+          <Reveal delay={140} direction="none" className="relative">
             <div
               aria-hidden
               className="absolute -inset-4 -z-10 rounded-3xl bg-gradient-to-br from-primary/15 via-teal-500/10 to-transparent blur-2xl"
             />
             
-            <div className="overflow-hidden rounded-2xl border border-border/80 bg-card shadow-2xl shadow-black/20">
-              {/* Dashboard Preview Browser Chrome */}
-              <div className="flex items-center justify-between border-b border-border/70 bg-muted/40 px-5 py-3.5">
-                <div className="flex items-center gap-2.5">
-                  <span className="flex gap-1.5">
-                    <span className="size-2.5 rounded-full bg-border" />
-                    <span className="size-2.5 rounded-full bg-border" />
-                    <span className="size-2.5 rounded-full bg-border" />
-                  </span>
-                  <span className="text-xs font-bold text-foreground">
-                    SmartGrow Live Telemetry Hub
-                  </span>
-                </div>
-                <span className="flex items-center gap-1.5 rounded-full border border-emerald-500/25 bg-emerald-500/10 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-emerald-500">
-                  <span className="size-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                  ESP32 Stream Active
+            <div className="overflow-hidden rounded-3xl border border-border/80 bg-card shadow-xl shadow-black/10">
+              
+              {/* Telemetry Hub Header */}
+              <div className="flex items-center justify-between border-b border-border/70 bg-muted/30 px-4 py-3">
+                <span className="text-xs font-bold text-foreground">
+                  Live Telemetry Hub
                 </span>
+                <div className="flex items-center gap-1.5 rounded-full border border-emerald-500/25 bg-emerald-500/10 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">
+                  <span className="size-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                  <span>ESP32 Stream Active</span>
+                </div>
               </div>
 
-              {/* Metric Selector Tabs */}
-              <div className="border-b border-border/70 bg-muted/20 p-3">
+              {/* 4-Metric Summary Grid */}
+              <div className="p-4 bg-muted/10 border-b border-border/70">
                 <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
                   {metricTabs.map((m) => {
                     const isTabSelected = selectedMetric === m.id;
@@ -190,31 +170,31 @@ export function MonitoringPreview() {
                         type="button"
                         onClick={() => setSelectedMetric(m.id)}
                         className={cn(
-                          "flex flex-col items-start rounded-xl border p-2.5 text-left transition-all",
+                          "flex flex-col items-start rounded-2xl border p-2.5 text-left transition-all cursor-pointer",
                           isTabSelected
-                            ? "border-primary bg-background shadow-sm"
+                            ? "border-primary bg-background shadow-xs ring-1 ring-primary/20"
                             : "border-border/60 bg-card/60 hover:bg-card hover:border-border",
                         )}
                       >
                         <div className="flex w-full items-center justify-between">
-                          <span className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground">
+                          <span className="text-[9px] font-bold uppercase tracking-wider text-muted-foreground">
                             {m.label}
                           </span>
                           <m.icon
                             className={cn(
-                              "size-3.5",
+                              "size-3",
                               isTabSelected ? "text-primary" : "text-muted-foreground",
                             )}
                             strokeWidth={2.2}
                           />
                         </div>
-                        <p className="mt-1 text-base font-black tabular-nums tracking-tight text-foreground">
+                        <p className="mt-1 text-sm font-black tabular-nums tracking-tight text-foreground">
                           {m.value}
                           <span className="text-[10px] font-medium text-muted-foreground ml-0.5">
                             {m.unit}
                           </span>
                         </p>
-                        <span className="mt-0.5 text-[9px] font-bold text-emerald-500">
+                        <span className="mt-0.5 text-[9px] font-bold text-emerald-600 dark:text-emerald-400">
                           {m.status}
                         </span>
                       </button>
@@ -223,19 +203,19 @@ export function MonitoringPreview() {
                 </div>
               </div>
 
-              {/* Dynamic Interactive Chart Area */}
-              <div className="p-5">
+              {/* Live Trendline Summary Area */}
+              <div className="p-4 sm:p-5">
                 <div className="flex items-center justify-between">
                   <div>
-                    <h4 className="text-xs font-bold uppercase tracking-wider text-muted-foreground">
+                    <h4 className="text-[11px] font-bold uppercase tracking-wider text-muted-foreground">
                       24-Hour Cycle · {currentMetric.label}
                     </h4>
-                    <p className="text-xs font-semibold text-foreground">
-                      Target Range: {currentMetric.target}
+                    <p className="text-xs font-bold text-foreground">
+                      Target: {currentMetric.target}
                     </p>
                   </div>
                   <div className="text-right">
-                    <span className="text-xs font-bold text-primary">
+                    <span className="text-xs font-bold text-primary font-mono">
                       {currentMetric.avg}
                     </span>
                     <p className="text-[10px] text-muted-foreground">
@@ -244,12 +224,12 @@ export function MonitoringPreview() {
                   </div>
                 </div>
 
-                <div className="mt-3 rounded-xl border border-border/70 bg-muted/10 p-3">
+                <div className="mt-3 rounded-2xl border border-border/70 bg-muted/15 p-2.5">
                   <AreaChart
                     key={currentMetric.id}
                     gradientId={`preview-chart-${currentMetric.id}`}
                     values={currentMetric.data}
-                    className="h-32 w-full"
+                    className="h-28 w-full"
                   />
                 </div>
 
@@ -262,36 +242,21 @@ export function MonitoringPreview() {
                     {zoneStatuses.map((z) => (
                       <div
                         key={z.name}
-                        className={cn(
-                          "rounded-xl border p-2.5 transition-all",
-                          z.attention
-                            ? "border-amber-500/30 bg-amber-500/5"
-                            : "border-border/70 bg-muted/20",
-                        )}
+                        className="rounded-2xl border border-border/70 bg-card p-2 text-left"
                       >
                         <div className="flex items-center justify-between">
-                          <span className="text-xs font-bold text-foreground">
+                          <span className="text-[11px] font-bold text-foreground">
                             {z.name}
                           </span>
-                          <span
-                            className={cn(
-                              "flex items-center gap-1 text-[10px] font-bold",
-                              z.attention ? "text-amber-500" : "text-emerald-500",
-                            )}
-                          >
-                            <span
-                              className={cn(
-                                "size-1.5 rounded-full",
-                                z.attention ? "bg-amber-500" : "bg-emerald-500",
-                              )}
-                            />
+                          <span className="flex items-center gap-1 text-[9px] font-bold text-emerald-600 dark:text-emerald-400">
+                            <span className="size-1 rounded-full bg-emerald-500" />
                             {z.status}
                           </span>
                         </div>
-                        <p className="mt-1 text-[10px] text-muted-foreground">
+                        <p className="text-[9px] text-muted-foreground truncate">
                           {z.role}
                         </p>
-                        <div className="mt-1 flex items-center justify-between text-[10px] font-mono">
+                        <div className="mt-1 flex items-center justify-between text-[9px] font-mono text-foreground font-semibold">
                           <span>{z.temp}</span>
                           <span>{z.rh}</span>
                         </div>
@@ -299,6 +264,7 @@ export function MonitoringPreview() {
                     ))}
                   </div>
                 </div>
+
               </div>
             </div>
           </Reveal>
