@@ -118,23 +118,15 @@ export function Navbar() {
 
           {/* Action Buttons & Menu Trigger */}
           <div className="flex items-center gap-2">
-            {/* Desktop Action Buttons (>= 1024px) */}
-            <div className="hidden items-center gap-2 lg:flex">
-              <Button
-                variant="ghost"
-                size="sm"
-                className="text-xs font-semibold text-muted-foreground hover:text-foreground hover:bg-accent rounded-full px-3.5"
-                asChild
-              >
-                <Link href="/dashboard">Sign In</Link>
-              </Button>
+            {/* Desktop Action Button (>= 1024px) */}
+            <div className="hidden items-center lg:flex">
               <Button
                 size="sm"
                 className="text-xs font-semibold shadow-xs shadow-primary/20 rounded-full px-4 py-1.5"
                 asChild
               >
-                <Link href="/dashboard">
-                  Sign Up
+                <Link href="/login">
+                  Sign In
                 </Link>
               </Button>
             </div>
@@ -146,8 +138,8 @@ export function Navbar() {
                 className="h-8 rounded-full px-3 text-[11px] font-semibold shadow-xs shadow-primary/20"
                 asChild
               >
-                <Link href="/dashboard">
-                  Sign Up
+                <Link href="/login">
+                  Sign In
                 </Link>
               </Button>
               
@@ -184,13 +176,6 @@ export function Navbar() {
                   {link.label}
                 </a>
               ))}
-              <div className="pt-2 border-t border-border mt-2">
-                <Button variant="outline" size="sm" className="w-full text-xs font-semibold rounded-xl" asChild>
-                  <Link href="/dashboard" onClick={() => setOpen(false)}>
-                    Sign In
-                  </Link>
-                </Button>
-              </div>
             </div>
           </div>
         )}

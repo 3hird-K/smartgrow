@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useUser, useClerk } from "@clerk/nextjs";
 import {
   LayoutDashboard,
   Thermometer,
@@ -10,7 +11,7 @@ import {
   Users,
   Settings,
   HelpCircle,
-  MoreVertical,
+  LogOut,
   Cpu,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -37,6 +38,8 @@ const navItems: NavItem[] = [
 export function SidebarContent({ collapsed = false, onItemClick }: { collapsed?: boolean; onItemClick?: () => void }) {
   const pathname = usePathname();
   const [mounted, setMounted] = useState(false);
+  const { user } = useUser();
+  const { signOut } = useClerk();
 
   useEffect(() => {
     setMounted(true);
@@ -164,23 +167,23 @@ export function SidebarContent({ collapsed = false, onItemClick }: { collapsed?:
         </nav>
       </div>
 
-      {/* ── Bottom actions ── */}
-      <div className="mt-auto shrink-0 space-y-2 px-1 pt-4 border-t border-sidebar-border">
-        <div className={cn("flex flex-col gap-0.5", collapsed ? "px-0" : "")}>
+      {/* ── Secondary Links & User Card ── */}
+      <div className="mt-auto space-y-3 pt-4 border-t border-border/50">
+        <div className="space-y-1">
           <Link
             href="/dashboard/settings"
             className={cn(
-              "flex items-center rounded-lg text-[12px] font-semibold transition-colors duration-150",
-              collapsed ? "justify-center px-0 py-2" : "gap-3 px-3 py-2",
+              "flex items-center rounded-xl text-xs font-semibold transition-colors duration-150",
+              collapsed ? "justify-center p-2.5" : "gap-3 px-3 py-2",
               pathname === "/dashboard/settings"
-                ? "bg-primary text-primary-foreground shadow-md shadow-primary/25"
-                : "text-muted-foreground hover:bg-accent hover:text-foreground",
+                ? "bg-primary/15 text-primary font-bold"
+                : "text-muted-foreground hover:bg-muted/50 hover:text-foreground",
             )}
             title={collapsed ? "Settings" : undefined}
             onClick={onItemClick}
           >
             <Settings
-              className={cn("size-4", pathname === "/dashboard/settings" ? "text-white" : "text-muted-foreground")}
+              className={cn("size-4", pathname === "/dashboard/settings" ? "text-primary" : "text-muted-foreground")}
               strokeWidth={2}
             />
             {!collapsed && <span>Settings</span>}
@@ -188,55 +191,66 @@ export function SidebarContent({ collapsed = false, onItemClick }: { collapsed?:
           <Link
             href="/dashboard/get-help"
             className={cn(
-              "flex items-center rounded-lg text-[12px] font-semibold transition-colors duration-150",
-              collapsed ? "justify-center px-0 py-2" : "gap-3 px-3 py-2",
+              "flex items-center rounded-xl text-xs font-semibold transition-colors duration-150",
+              collapsed ? "justify-center p-2.5" : "gap-3 px-3 py-2",
               pathname === "/dashboard/get-help"
-                ? "bg-primary text-primary-foreground shadow-md shadow-primary/25"
-                : "text-muted-foreground hover:bg-accent hover:text-foreground",
+                ? "bg-primary/15 text-primary font-bold"
+                : "text-muted-foreground hover:bg-muted/50 hover:text-foreground",
             )}
             title={collapsed ? "Get Help" : undefined}
             onClick={onItemClick}
           >
             <HelpCircle
-              className={cn("size-4", pathname === "/dashboard/get-help" ? "text-white" : "text-muted-foreground")}
+              className={cn("size-4", pathname === "/dashboard/get-help" ? "text-primary" : "text-muted-foreground")}
               strokeWidth={2}
             />
             {!collapsed && <span>Get Help</span>}
           </Link>
         </div>
 
-        {/* ── User card ── */}
+        {/* ── User card with Clerk Google profile & Sign Out ── */}
         <div
           className={cn(
-            "flex items-center rounded-lg bg-muted/50 p-2.5 transition-colors hover:bg-muted",
+            "flex items-center rounded-2xl bg-muted/40 p-2.5 border border-border/50 transition-colors",
             collapsed ? "flex-col gap-2" : "gap-3",
           )}
         >
-          <div className="relative">
+          <div className="relative shrink-0">
             <Avatar className="size-8 shrink-0 border border-border">
-              <AvatarFallback className="bg-gradient-to-br from-emerald-500 to-teal-600 text-[9px] font-bold text-white">
-                SG
-              </AvatarFallback>
+              {user?.imageUrl ? (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                  src={user.imageUrl}
+                  alt={user.fullName || "User"}
+                  className="size-full object-cover rounded-full"
+                />
+              ) : (
+                <AvatarFallback className="bg-gradient-to-br from-emerald-500 to-teal-600 text-[9px] font-bold text-white">
+                  {user?.firstName ? user.firstName.slice(0, 2).toUpperCase() : "SG"}
+                </AvatarFallback>
+              )}
             </Avatar>
-            <span className="absolute -bottom-0.5 -right-0.5 size-2.5 rounded-full border-2 border-sidebar bg-emerald-500" />
+            <span className="absolute -bottom-0.5 -right-0.5 size-2 rounded-full border-2 border-sidebar bg-emerald-500 animate-pulse" />
           </div>
           {!collapsed && (
             <>
               <div className="min-w-0 flex-1">
-                <p className="truncate text-[12px] font-semibold text-foreground leading-tight">
-                  SmartGrow Admin
+                <p className="truncate text-xs font-bold text-foreground leading-tight">
+                  {user?.fullName || "SmartGrow Operator"}
                 </p>
-                <p className="text-[10px] text-primary">
-                  System Operator
+                <p className="truncate text-[10px] text-muted-foreground">
+                  {user?.primaryEmailAddress?.emailAddress || "Google Account"}
                 </p>
               </div>
               <Button
                 variant="ghost"
                 size="icon"
-                className="size-7 shrink-0 text-muted-foreground hover:text-foreground"
+                onClick={() => signOut({ redirectUrl: "/login" })}
+                className="size-7 shrink-0 text-muted-foreground hover:text-destructive hover:bg-destructive/10 rounded-lg transition-colors cursor-pointer"
+                title="Sign Out"
               >
-                <MoreVertical className="size-3.5" />
-                <span className="sr-only">Menu</span>
+                <LogOut className="size-3.5" />
+                <span className="sr-only">Sign out</span>
               </Button>
             </>
           )}

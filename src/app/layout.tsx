@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans, IBM_Plex_Mono } from "next/font/google";
+import { ClerkProvider } from "@clerk/nextjs";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
 import "./globals.css";
@@ -57,22 +58,24 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth" suppressHydrationWarning>
-      <body
-        className={`${plusJakartaSans.variable} ${ibmPlexMono.variable} font-sans antialiased`}
-        style={{ fontFamily: "var(--font-plus-jakarta), Plus Jakarta Sans, system-ui, sans-serif" }}
-      >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="dark"
-          enableSystem={false}
-          storageKey="smartgrow-theme"
-          disableTransitionOnChange
+    <ClerkProvider>
+      <html lang="en" className="scroll-smooth" suppressHydrationWarning>
+        <body
+          className={`${plusJakartaSans.variable} ${ibmPlexMono.variable} font-sans antialiased`}
+          style={{ fontFamily: "var(--font-plus-jakarta), Plus Jakarta Sans, system-ui, sans-serif" }}
         >
-          {children}
-          <Toaster position="top-center" expand={true} richColors />
-        </ThemeProvider>
-      </body>
-    </html>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="dark"
+            enableSystem={false}
+            storageKey="smartgrow-theme"
+            disableTransitionOnChange
+          >
+            {children}
+            <Toaster position="top-center" expand={true} richColors />
+          </ThemeProvider>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
