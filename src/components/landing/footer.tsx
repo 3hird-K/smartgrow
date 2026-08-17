@@ -5,12 +5,12 @@ import { Sprout } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
 
 const platformLinks = [
-  { label: "Platform", href: "#home" },
+  { label: "Overview", href: "#home" },
+  { label: "Why SmartGrow", href: "#why-smartgrow" },
   { label: "How It Works", href: "#how-it-works" },
   { label: "Monitoring", href: "#monitoring" },
   { label: "Automation", href: "#automation" },
   { label: "Cultivation", href: "#cultivation" },
-  { label: "Multi-Zone Blueprint", href: "#zones" },
 ];
 
 const systemLinks = [
@@ -100,15 +100,10 @@ export function Footer() {
             <span className="font-semibold text-foreground">© {new Date().getFullYear()} SmartGrow</span>
             <span>•</span>
             <span>Smart Greenhouse Management Platform</span>
-            <span>•</span>
-            <span>Next.js 15 &amp; ESP32</span>
           </div>
 
           <div className="flex flex-wrap items-center gap-4 text-xs text-muted-foreground">
-            <div className="flex items-center gap-2 rounded-full border border-border/80 bg-background/50 dark:bg-card/50 px-2.5 py-0.5 backdrop-blur-sm">
-              <span className="text-[11px] font-medium text-muted-foreground">Theme</span>
-              <ThemeToggle className="size-7" />
-            </div>
+            <ThemeToggle className="size-8" />
             <div className="flex items-center gap-4">
               <span>DHT22 Telemetry</span>
               <span>•</span>

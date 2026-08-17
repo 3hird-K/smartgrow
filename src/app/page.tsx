@@ -6,10 +6,6 @@ import { SystemFlow } from "@/components/landing/system-flow";
 import { MonitoringPreview } from "@/components/landing/monitoring-preview";
 import { AutomationSection } from "@/components/landing/automation-section";
 import { CultivationLifecycle } from "@/components/landing/cultivation-lifecycle";
-import { ZoneMonitoring } from "@/components/landing/zone-monitoring";
-import { AuditSection } from "@/components/landing/audit-section";
-import { Benefits } from "@/components/landing/benefits";
-import { FinalCta } from "@/components/landing/final-cta";
 import { Footer } from "@/components/landing/footer";
 
 export default function LandingPage() {
@@ -24,10 +20,6 @@ export default function LandingPage() {
         <MonitoringPreview />
         <AutomationSection />
         <CultivationLifecycle />
-        <ZoneMonitoring />
-        <AuditSection />
-        <Benefits />
-        <FinalCta />
       </main>
       <Footer />
     </div>

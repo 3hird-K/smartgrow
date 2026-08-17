@@ -69,7 +69,7 @@ export function ProblemSolution() {
               
               {/* Left Column Header */}
               <div className="flex items-center justify-between">
-                <span className="text-xs font-bold uppercase tracking-wider text-muted-foreground">
+                <span className="text-xs font-bold uppercase tracking-wider text-destructive">
                   Traditional Manual Routine
                 </span>
                 <span className="rounded-full border border-destructive/20 bg-destructive/10 px-2.5 py-0.5 text-[10px] font-bold uppercase text-destructive">

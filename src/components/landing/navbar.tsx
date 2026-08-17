@@ -7,12 +7,11 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 
 const navLinks = [
-  { label: "Platform", href: "#home" },
+  { label: "Why SmartGrow", href: "#why-smartgrow" },
   { label: "How It Works", href: "#how-it-works" },
   { label: "Monitoring", href: "#monitoring" },
   { label: "Automation", href: "#automation" },
   { label: "Cultivation", href: "#cultivation" },
-  { label: "Zones", href: "#zones" },
 ];
 
 function Brand() {
@@ -122,11 +121,11 @@ export function Navbar() {
             </Button>
             <Button
               size="sm"
-              className="text-xs font-bold uppercase tracking-wider shadow-md shadow-primary/20 rounded-full px-4.5 py-1.5"
+              className="text-xs font-semibold shadow-xs shadow-primary/20 rounded-full px-4 py-1.5"
               asChild
             >
               <Link href="/dashboard">
-                Open Dashboard
+                Sign Up
               </Link>
             </Button>
           </div>
@@ -171,9 +170,9 @@ export function Navbar() {
                     Sign In
                   </Link>
                 </Button>
-                <Button size="sm" className="w-full text-xs font-bold uppercase tracking-wider rounded-xl shadow-md shadow-primary/20" asChild>
+                <Button size="sm" className="w-full text-xs font-semibold rounded-xl shadow-xs shadow-primary/20" asChild>
                   <Link href="/dashboard" onClick={() => setOpen(false)}>
-                    Open Dashboard
+                    Sign Up
                   </Link>
                 </Button>
               </div>
