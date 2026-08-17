@@ -1,6 +1,6 @@
 "use client";
 
-import { Activity, Cpu, Layers, Sprout, CheckCircle2, ShieldCheck, Thermometer, Wind } from "lucide-react";
+import { Radio, Timer, Layers, RefreshCw } from "lucide-react";
 import { Reveal } from "./reveal";
 
 const pillars = [
@@ -8,13 +8,13 @@ const pillars = [
     value: "24/7",
     label: "Continuous Telemetry",
     desc: "Calibrated DHT22, CO₂, and substrate probes streaming live microclimate telemetry.",
-    icon: Activity,
+    icon: Radio,
   },
   {
     value: "<100ms",
     label: "Relay Reaction Loop",
     desc: "Autonomous ESP32 firmware executes cooling fans and misting foggers in sub-second cycles.",
-    icon: Cpu,
+    icon: Timer,
   },
   {
     value: "4 Zones",
@@ -26,7 +26,7 @@ const pillars = [
     value: "6 Stages",
     label: "Full Batch Lifecycle",
     desc: "End-to-end tracking from initial inoculation and incubation through fruiting and harvest.",
-    icon: Sprout,
+    icon: RefreshCw,
   },
 ];
 
@@ -37,7 +37,7 @@ export function ValueStrip() {
         
         {/* Editorial Sub-Header & Narrative Statement */}
         <Reveal>
-          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 pb-10 border-b border-border/70">
+          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 pb-8 border-b border-border/70">
             <div className="max-w-xl">
               <span className="text-xs font-bold uppercase tracking-widest text-primary">
                 NATURE + EMBEDDED PRECISION
@@ -53,21 +53,21 @@ export function ValueStrip() {
         </Reveal>
 
         {/* 4 High-Impact Metric Pillars */}
-        <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-8 grid grid-cols-1 gap-3.5 sm:grid-cols-2 lg:grid-cols-4">
           {pillars.map((p, i) => (
-            <Reveal key={p.label} delay={i * 80}>
-              <div className="group relative flex flex-col justify-between rounded-2xl border border-border/70 bg-card p-6 transition-all duration-300 hover:border-primary/40 hover:shadow-md hover:shadow-primary/5 h-full">
+            <Reveal key={p.label} delay={i * 60}>
+              <div className="group relative flex flex-col justify-between rounded-2xl border border-border/80 bg-card p-5 transition-all duration-300 hover:border-primary/40 hover:shadow-lg hover:shadow-primary/5 h-full">
                 <div>
                   <div className="flex items-center justify-between">
-                    <span className="text-2xl font-black tracking-tight text-primary tabular-nums">
+                    <span className="text-xl sm:text-2xl font-black tracking-tight text-primary tabular-nums">
                       {p.value}
                     </span>
-                    <span className="flex size-9 items-center justify-center rounded-xl bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
+                    <div className="flex size-8.5 items-center justify-center rounded-xl bg-primary/10 text-primary border border-primary/20 transition-all duration-200 group-hover:bg-primary group-hover:text-primary-foreground group-hover:scale-105 shadow-xs">
                       <p.icon className="size-4" strokeWidth={2.2} />
-                    </span>
+                    </div>
                   </div>
 
-                  <h3 className="mt-4 text-sm font-bold tracking-tight text-foreground">
+                  <h3 className="mt-3.5 text-sm font-bold tracking-tight text-foreground">
                     {p.label}
                   </h3>
                   <p className="mt-1.5 text-xs leading-relaxed text-muted-foreground">

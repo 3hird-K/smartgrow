@@ -76,11 +76,11 @@ export function Navbar() {
   }, [open]);
 
   return (
-    <header className="fixed top-0 inset-x-0 z-50 flex justify-center px-3.5 sm:px-6 pt-3 sm:pt-4 pointer-events-none transition-all duration-300">
-      <div className="pointer-events-auto w-full max-w-6xl">
+    <header className="fixed top-0 inset-x-0 z-50 flex justify-center px-5 sm:px-8 pt-3 sm:pt-4 pointer-events-none transition-all duration-300">
+      <div className="pointer-events-auto w-full max-w-7xl">
         <nav
           className={cn(
-            "flex items-center justify-between px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-2xl md:rounded-full border transition-all duration-300",
+            "flex items-center justify-between px-4 sm:px-6 py-2 sm:py-2.5 rounded-2xl md:rounded-full border transition-all duration-300",
             scrolled
               ? "border-border/90 bg-background/90 dark:bg-card/90 shadow-xl shadow-black/5 dark:shadow-black/30 backdrop-blur-xl"
               : "border-border/60 bg-background/75 dark:bg-card/75 shadow-lg shadow-black/[0.03] dark:shadow-black/20 backdrop-blur-lg",

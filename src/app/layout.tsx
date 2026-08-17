@@ -57,7 +57,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <body
         className={`${plusJakartaSans.variable} ${ibmPlexMono.variable} font-sans antialiased`}
         style={{ fontFamily: "var(--font-plus-jakarta), Plus Jakarta Sans, system-ui, sans-serif" }}
