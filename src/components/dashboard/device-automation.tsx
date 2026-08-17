@@ -30,6 +30,8 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 
+import { toast } from "sonner";
+
 export function DeviceAutomation() {
   const [rules, setRules] = useState([
     { id: 1, sensor: "temperature", condition: ">", threshold: 28, actuator: "fan", active: true },
@@ -43,23 +45,46 @@ export function DeviceAutomation() {
   const [newActuator, setNewActuator] = useState("fan");
 
   const toggleRule = (id: number) => {
-    setRules(rules.map(r => r.id === id ? { ...r, active: !r.active } : r));
+    const target = rules.find((r) => r.id === id);
+    setRules(rules.map((r) => (r.id === id ? { ...r, active: !r.active } : r)));
+    if (target) {
+      if (!target.active) {
+        toast.success("Automation Rule Enabled", {
+          description: `Auto-trigger active: ${target.sensor} ${target.condition} ${target.threshold} → ${target.actuator}`,
+        });
+      } else {
+        toast.info("Automation Rule Disabled", {
+          description: `Auto-trigger paused for ${target.actuator}.`,
+        });
+      }
+    }
   };
 
   const removeRule = (id: number) => {
-    setRules(rules.filter(r => r.id !== id));
+    const target = rules.find((r) => r.id === id);
+    setRules(rules.filter((r) => r.id !== id));
+    toast.error("Automation Rule Removed", {
+      description: `Rule for ${target?.actuator || "actuator"} has been deleted.`,
+    });
   };
 
   const handleAddRule = () => {
-    const newId = rules.length > 0 ? Math.max(...rules.map(r => r.id)) + 1 : 1;
-    setRules([...rules, {
-      id: newId,
-      sensor: newSensor,
-      condition: newCondition,
-      threshold: parseInt(newThreshold) || 0,
-      actuator: newActuator,
-      active: true,
-    }]);
+    const newId = rules.length > 0 ? Math.max(...rules.map((r) => r.id)) + 1 : 1;
+    const thresholdVal = parseInt(newThreshold) || 0;
+    setRules([
+      ...rules,
+      {
+        id: newId,
+        sensor: newSensor,
+        condition: newCondition,
+        threshold: thresholdVal,
+        actuator: newActuator,
+        active: true,
+      },
+    ]);
+    toast.success("New Automation Rule Saved", {
+      description: `Trigger ${newActuator} when ${newSensor} ${newCondition} ${thresholdVal}`,
+    });
     setIsAddRuleOpen(false);
   };
 

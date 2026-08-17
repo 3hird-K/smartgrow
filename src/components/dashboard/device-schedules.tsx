@@ -30,6 +30,8 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 
+import { toast } from "sonner";
+
 export function DeviceSchedules() {
   const [schedules, setSchedules] = useState([
     { id: 1, time: "08:00 AM", duration: "15 mins", actuator: "sprinkler", days: "Daily", active: true },
@@ -43,23 +45,45 @@ export function DeviceSchedules() {
   const [newDays, setNewDays] = useState("Daily");
 
   const toggleSchedule = (id: number) => {
-    setSchedules(schedules.map(s => s.id === id ? { ...s, active: !s.active } : s));
+    const target = schedules.find((s) => s.id === id);
+    setSchedules(schedules.map((s) => (s.id === id ? { ...s, active: !s.active } : s)));
+    if (target) {
+      if (!target.active) {
+        toast.success("Schedule Activated", {
+          description: `${target.actuator} timer active: ${target.time} (${target.duration})`,
+        });
+      } else {
+        toast.info("Schedule Paused", {
+          description: `${target.actuator} timer paused.`,
+        });
+      }
+    }
   };
 
   const removeSchedule = (id: number) => {
-    setSchedules(schedules.filter(s => s.id !== id));
+    const target = schedules.find((s) => s.id === id);
+    setSchedules(schedules.filter((s) => s.id !== id));
+    toast.error("Schedule Removed", {
+      description: `Schedule for ${target?.actuator || "actuator"} has been removed.`,
+    });
   };
 
   const handleAddSchedule = () => {
-    const newId = schedules.length > 0 ? Math.max(...schedules.map(s => s.id)) + 1 : 1;
-    setSchedules([...schedules, {
-      id: newId,
-      time: newTime,
-      duration: newDuration,
-      actuator: newActuator,
-      days: newDays,
-      active: true,
-    }]);
+    const newId = schedules.length > 0 ? Math.max(...schedules.map((s) => s.id)) + 1 : 1;
+    setSchedules([
+      ...schedules,
+      {
+        id: newId,
+        time: newTime,
+        duration: newDuration,
+        actuator: newActuator,
+        days: newDays,
+        active: true,
+      },
+    ]);
+    toast.success("New Schedule Created", {
+      description: `${newActuator} scheduled for ${newTime} (${newDuration}, ${newDays})`,
+    });
     setIsAddScheduleOpen(false);
   };
 

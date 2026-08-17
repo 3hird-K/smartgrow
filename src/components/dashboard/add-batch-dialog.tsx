@@ -35,10 +35,11 @@ export function AddBatchDialog() {
 
     setTimeout(() => {
       setLoading(false);
-      toast.error("Database Connection Error", {
-        description: "The inventory service is currently undergoing maintenance. Please try again later.",
+      setOpen(false);
+      toast.success("Mushroom Batch Registered", {
+        description: "New oyster mushroom batch successfully assigned to Greenhouse Zone A.",
       });
-    }, 1500);
+    }, 1000);
   };
 
   return (

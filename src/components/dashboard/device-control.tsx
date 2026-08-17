@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Fan, Droplets, CloudRain, Wind } from "lucide-react";
+import { toast } from "sonner";
 import {
   Card,
   CardContent,
@@ -27,11 +28,22 @@ export function DeviceControl() {
     exhaust: true,
   });
 
-  const toggleDevice = (id: string) => {
+  const toggleDevice = (id: string, name: string) => {
+    const nextState = !deviceState[id];
     setDeviceState((prev) => ({
       ...prev,
-      [id]: !prev[id],
+      [id]: nextState,
     }));
+
+    if (nextState) {
+      toast.success(`${name} Activated`, {
+        description: "Relay energized. ESP32 command dispatched to greenhouse zone.",
+      });
+    } else {
+      toast.info(`${name} Deactivated`, {
+        description: "Relay de-energized. Returned to automatic standby.",
+      });
+    }
   };
 
   return (
@@ -77,7 +89,7 @@ export function DeviceControl() {
               </div>
               <Switch
                 checked={isActive}
-                onCheckedChange={() => toggleDevice(device.id)}
+                onCheckedChange={() => toggleDevice(device.id, device.name)}
               />
             </div>
           );
