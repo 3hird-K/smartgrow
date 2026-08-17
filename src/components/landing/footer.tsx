@@ -1,8 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { Sprout } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { BrandLogo } from "@/components/brand-logo";
 
 const platformLinks = [
   { label: "Overview", href: "#home" },
@@ -31,10 +31,7 @@ export function Footer() {
           {/* Brand & Description */}
           <div>
             <div className="flex items-center gap-3">
-              <div className="relative flex size-9 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 font-black text-white shadow-md shadow-emerald-500/20">
-                <Sprout className="size-5" />
-                <span className="absolute -bottom-0.5 -right-0.5 size-2 rounded-full border-2 border-background bg-emerald-400 animate-pulse" />
-              </div>
+              <BrandLogo size={36} className="size-9" />
               <div className="flex flex-col">
                 <span className="text-sm font-extrabold tracking-tight text-foreground leading-none">
                   SMARTGROW

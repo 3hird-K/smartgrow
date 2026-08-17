@@ -9,29 +9,30 @@ export const metadata = {
 
 export default function LoginPage() {
   return (
-    <main className="min-h-screen grid grid-cols-1 lg:grid-cols-[1.15fr_0.85fr] bg-background">
+    <main className="min-h-screen w-full flex items-center justify-center p-4 sm:p-6 lg:p-8 bg-background relative selection:bg-emerald-500 selection:text-white">
       
-      {/* Left Visual Area (Desktop Full-Bleed Showcase) */}
-      <section
-        aria-label="SmartGrow Greenhouse Telemetry Visual"
-        className="hidden lg:flex flex-col h-full min-h-screen"
-      >
-        <AuthTelemetryShowcase />
-      </section>
+      {/* Top Right Theme Toggle */}
+      <div className="absolute top-5 right-5 sm:top-6 sm:right-8 z-20">
+        <ThemeToggle className="size-8" />
+      </div>
 
-      {/* Right Authentication Area */}
-      <section
-        aria-label="Account Sign In Form"
-        className="relative flex min-h-screen flex-col items-center justify-center p-6 sm:p-10 lg:p-14"
-      >
-        {/* Top Right Theme Toggle */}
-        <div className="absolute top-5 right-5 sm:top-8 sm:right-8 z-20">
-          <ThemeToggle className="size-8" />
-        </div>
+      {/* Centered Split Unified Card */}
+      <div className="w-full max-w-3xl lg:max-w-4xl rounded-[2rem] overflow-hidden border border-border/80 dark:border-white/10 shadow-2xl shadow-zinc-950/10 dark:shadow-emerald-950/20 grid grid-cols-1 md:grid-cols-2 bg-card">
+        
+        {/* Left Half (Dark Emerald Brand & Feature Showcase) */}
+        <section aria-label="SmartGrow Overview" className="h-full">
+          <AuthTelemetryShowcase />
+        </section>
 
-        {/* Google Authentication Panel */}
-        <GoogleSignInPanel />
-      </section>
+        {/* Right Half (Sign In Form) */}
+        <section
+          aria-label="Account Sign In Form"
+          className="p-6 sm:p-8 lg:p-10 flex flex-col justify-center bg-card"
+        >
+          <GoogleSignInPanel />
+        </section>
+
+      </div>
 
     </main>
   );

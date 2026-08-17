@@ -14,6 +14,8 @@ const navLinks = [
   { label: "Cultivation", href: "#cultivation" },
 ];
 
+import { BrandLogo } from "@/components/brand-logo";
+
 function Brand() {
   return (
     <Link
@@ -21,10 +23,7 @@ function Brand() {
       className="group flex items-center gap-2.5 transition-opacity hover:opacity-95 shrink-0"
       aria-label="SmartGrow home"
     >
-      <div className="relative flex size-8 sm:size-9 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-500 via-teal-500 to-emerald-600 font-black text-white shadow-md shadow-emerald-500/20 transition-transform group-hover:scale-105">
-        <Sprout className="size-4.5 sm:size-5" />
-        <span className="absolute -bottom-0.5 -right-0.5 size-2 rounded-full border-2 border-background bg-emerald-400 animate-pulse" />
-      </div>
+      <BrandLogo size={36} priority className="size-8 sm:size-9 transition-transform group-hover:scale-105" />
       <div className="flex flex-col">
         <span className="text-[13px] sm:text-sm font-extrabold tracking-tight text-foreground leading-none">
           SMARTGROW

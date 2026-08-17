@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useAuth, useClerk } from "@clerk/nextjs";
-import { AlertCircle, ArrowLeft, Loader2, ShieldCheck, Sprout } from "lucide-react";
+import { AlertCircle, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 function GoogleLogo({ className = "size-5" }: { className?: string }) {
@@ -84,50 +84,22 @@ export function GoogleSignInPanel() {
   };
 
   return (
-    <div className="w-full max-w-md space-y-8">
-      {/* Top Back Link */}
-      <div>
-        <Link
-          href="/"
-          className="group inline-flex items-center gap-2 text-xs font-semibold text-muted-foreground transition-colors hover:text-foreground"
-        >
-          <ArrowLeft className="size-4 transition-transform group-hover:-translate-x-0.5" />
-          <span>Back to SmartGrow</span>
-        </Link>
-      </div>
-
-      {/* Brand Identity & Header */}
-      <div className="space-y-4">
-        <div className="flex items-center gap-3">
-          <div className="relative flex size-11 items-center justify-center rounded-2xl bg-gradient-to-br from-emerald-500 via-teal-500 to-emerald-600 font-black text-white shadow-md shadow-emerald-500/20">
-            <Sprout className="size-6" />
-            <span className="absolute -bottom-0.5 -right-0.5 size-2.5 rounded-full border-2 border-background bg-emerald-400 animate-pulse" />
-          </div>
-          <div className="flex flex-col">
-            <span className="text-base font-extrabold tracking-tight text-foreground leading-none">
-              SMARTGROW
-            </span>
-            <span className="mt-1 text-[10px] font-bold uppercase tracking-widest text-primary leading-none">
-              Greenhouse IoT
-            </span>
-          </div>
-        </div>
-
-        <div className="space-y-2 pt-2">
-          <h1 className="text-2xl font-extrabold tracking-tight text-foreground sm:text-3xl">
-            Welcome to SmartGrow
-          </h1>
-          <p className="text-xs leading-relaxed text-muted-foreground sm:text-sm">
-            Sign in to monitor your greenhouse, manage microclimate automation, and track cultivation.
-          </p>
-        </div>
+    <div className="w-full space-y-6">
+      {/* Header */}
+      <div className="space-y-2">
+        <h1 className="text-3xl font-extrabold tracking-tight text-foreground">
+          Welcome back
+        </h1>
+        <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
+          Sign in with Google to access your greenhouse dashboard and live automation controls.
+        </p>
       </div>
 
       {/* Error Alert Message */}
       {errorMessage && (
         <div
           role="alert"
-          className="flex items-start gap-3 rounded-2xl border border-destructive/30 bg-destructive/10 p-3.5 text-xs text-destructive animate-in fade-in-50 duration-200"
+          className="flex items-start gap-3 rounded-2xl border border-destructive/30 bg-destructive/10 p-4 text-xs text-destructive animate-in fade-in-50 duration-200"
         >
           <AlertCircle className="size-4 shrink-0 mt-0.5" />
           <div className="space-y-1">
@@ -137,13 +109,13 @@ export function GoogleSignInPanel() {
         </div>
       )}
 
-      {/* Interactive Google Sign-In Action */}
+      {/* Google Sign-In Action */}
       <div className="space-y-4 pt-1">
         <Button
           type="button"
           onClick={handleGoogleAuth}
           disabled={isLoading || !isAuthLoaded || !clerk.loaded}
-          className="relative flex h-12 w-full items-center justify-center gap-3 rounded-2xl border border-border/80 bg-card text-foreground font-semibold text-sm shadow-sm transition-all duration-200 hover:bg-muted/40 hover:border-primary/40 hover:shadow-md active:scale-[0.99] disabled:opacity-60 cursor-pointer"
+          className="relative flex h-12 w-full items-center justify-center gap-3 rounded-2xl border border-border/80 bg-muted/40 hover:bg-muted text-foreground font-semibold text-sm shadow-xs transition-all duration-200 hover:border-primary/40 hover:shadow-sm active:scale-[0.99] disabled:opacity-60 cursor-pointer"
         >
           {isLoading ? (
             <>
@@ -152,29 +124,34 @@ export function GoogleSignInPanel() {
             </>
           ) : (
             <>
-              <GoogleLogo className="size-5" />
+              <GoogleLogo className="size-4.5" />
               <span>Continue with Google</span>
             </>
           )}
         </Button>
-
-        {/* Security / Trust Subtext */}
-        <div className="flex items-center justify-center gap-1.5 text-center text-[11px] text-muted-foreground pt-1">
-          <ShieldCheck className="size-3.5 text-emerald-500 shrink-0" />
-          <span>Secure authentication powered by Google</span>
-        </div>
       </div>
 
-      {/* Subtle Bottom System Status */}
-      <div className="border-t border-border/70 pt-6">
-        <div className="flex items-center justify-between text-[11px] text-muted-foreground">
-          <div className="flex items-center gap-1.5">
-            <span className="size-2 rounded-full bg-emerald-500 animate-pulse" />
-            <span>ESP32 Telemetry Active</span>
-          </div>
-          <span className="font-mono text-[10px]">v1.0.0</span>
-        </div>
+      {/* Legal & Onboarding Notes */}
+      <div className="space-y-3 pt-2 text-xs text-muted-foreground leading-relaxed">
+        <p>
+          By continuing you agree to our{" "}
+          <Link href="/terms" className="font-semibold text-foreground hover:underline">
+            Terms
+          </Link>{" "}
+          and{" "}
+          <Link href="/privacy" className="font-semibold text-foreground hover:underline">
+            Privacy Policy
+          </Link>
+          .
+        </p>
+
+        <p>
+          New here? Continuing with Google creates your account automatically.
+        </p>
       </div>
+
+      {/* Clerk Smart CAPTCHA target container */}
+      <div id="clerk-captcha" />
     </div>
   );
 }
