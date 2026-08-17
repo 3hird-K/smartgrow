@@ -26,12 +26,12 @@ type NavItem = {
 };
 
 const navItems: NavItem[] = [
-  { label: "Dashboard", icon: LayoutDashboard, href: "/" },
-  { label: "IoT Control", icon: Cpu, href: "/iot-control" },
-  { label: "Sensor Readings", icon: Thermometer, href: "/sensor-readings", section: "Monitoring" },
-  { label: "Actuator Logs", icon: Fan, href: "/actuator-logs" },
-  { label: "Growth Tracking", icon: Sprout, href: "/growth-tracking", section: "Cultivation" },
-  { label: "Users", icon: Users, href: "/users", section: "Administration" },
+  { label: "Dashboard", icon: LayoutDashboard, href: "/dashboard" },
+  { label: "IoT Control", icon: Cpu, href: "/dashboard/iot-control" },
+  { label: "Sensor Readings", icon: Thermometer, href: "/dashboard/sensor-readings", section: "Monitoring" },
+  { label: "Actuator Logs", icon: Fan, href: "/dashboard/actuator-logs" },
+  { label: "Growth Tracking", icon: Sprout, href: "/dashboard/growth-tracking", section: "Cultivation" },
+  { label: "Users", icon: Users, href: "/dashboard/users", section: "Administration" },
 ];
 
 export function SidebarContent({ collapsed = false, onItemClick }: { collapsed?: boolean; onItemClick?: () => void }) {
@@ -95,8 +95,8 @@ export function SidebarContent({ collapsed = false, onItemClick }: { collapsed?:
           {navItems.map((item) => {
             const active =
               item.href != null &&
-              (item.href === "/"
-                ? pathname === "/"
+              (item.href === "/dashboard"
+                ? pathname === "/dashboard"
                 : pathname === item.href || pathname.startsWith(`${item.href}/`));
 
             const sectionLabel =
@@ -168,11 +168,11 @@ export function SidebarContent({ collapsed = false, onItemClick }: { collapsed?:
       <div className="mt-auto shrink-0 space-y-2 px-1 pt-4 border-t border-sidebar-border">
         <div className={cn("flex flex-col gap-0.5", collapsed ? "px-0" : "")}>
           <Link
-            href="/settings"
+            href="/dashboard/settings"
             className={cn(
               "flex items-center rounded-lg text-[12px] font-semibold transition-colors duration-150",
               collapsed ? "justify-center px-0 py-2" : "gap-3 px-3 py-2",
-              pathname === "/settings"
+              pathname === "/dashboard/settings"
                 ? "bg-primary text-primary-foreground shadow-md shadow-primary/25"
                 : "text-muted-foreground hover:bg-accent hover:text-foreground",
             )}
@@ -180,17 +180,17 @@ export function SidebarContent({ collapsed = false, onItemClick }: { collapsed?:
             onClick={onItemClick}
           >
             <Settings
-              className={cn("size-4", pathname === "/settings" ? "text-white" : "text-muted-foreground")}
+              className={cn("size-4", pathname === "/dashboard/settings" ? "text-white" : "text-muted-foreground")}
               strokeWidth={2}
             />
             {!collapsed && <span>Settings</span>}
           </Link>
           <Link
-            href="/get-help"
+            href="/dashboard/get-help"
             className={cn(
               "flex items-center rounded-lg text-[12px] font-semibold transition-colors duration-150",
               collapsed ? "justify-center px-0 py-2" : "gap-3 px-3 py-2",
-              pathname === "/get-help"
+              pathname === "/dashboard/get-help"
                 ? "bg-primary text-primary-foreground shadow-md shadow-primary/25"
                 : "text-muted-foreground hover:bg-accent hover:text-foreground",
             )}
@@ -198,7 +198,7 @@ export function SidebarContent({ collapsed = false, onItemClick }: { collapsed?:
             onClick={onItemClick}
           >
             <HelpCircle
-              className={cn("size-4", pathname === "/get-help" ? "text-white" : "text-muted-foreground")}
+              className={cn("size-4", pathname === "/dashboard/get-help" ? "text-white" : "text-muted-foreground")}
               strokeWidth={2}
             />
             {!collapsed && <span>Get Help</span>}

@@ -1,20 +1,29 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Plus_Jakarta_Sans, IBM_Plex_Mono } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
 import "./globals.css";
 
-const inter = Inter({
+const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ["latin"],
-  variable: "--font-inter",
+  variable: "--font-plus-jakarta",
+  display: "swap",
+  weight: ["300", "400", "500", "600", "700", "800"],
+});
+
+const ibmPlexMono = IBM_Plex_Mono({
+  weight: ["400", "500", "600", "700"],
+  subsets: ["latin"],
+  variable: "--font-ibm-mono",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "SmartGrow — IoT Greenhouse Dashboard",
-  description: "IoT-based smart greenhouse monitoring system for oyster mushroom cultivation. Real-time temperature and humidity tracking with automated climate control.",
+  title: "SmartGrow — Smart Greenhouse Automation",
+  description: "SmartGrow connects IoT sensors, automation, and real-time monitoring to help oyster mushroom growers maintain consistent growing conditions with less manual intervention.",
   metadataBase: new URL("https://smartgrow-ui.vercel.app"),
   openGraph: {
-    title: "SmartGrow — IoT Greenhouse Dashboard",
+    title: "SmartGrow — Smart Greenhouse Automation",
     description: "IoT-based smart greenhouse monitoring system for oyster mushroom cultivation with ESP32, DHT22 sensors, and automated climate control.",
     url: "https://smartgrow-ui.vercel.app",
     siteName: "SmartGrow",
@@ -31,7 +40,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "SmartGrow — IoT Smart Greenhouse",
+    title: "SmartGrow — Smart Greenhouse Automation",
     description: "Real-time environmental monitoring for oyster mushroom cultivation with automated fan, fogger, and sprinkler control.",
     images: ["/og-main.png"],
   },
@@ -50,8 +59,8 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${inter.variable} font-sans antialiased`}
-        style={{ fontFamily: "var(--font-inter), system-ui, sans-serif" }}
+        className={`${plusJakartaSans.variable} ${ibmPlexMono.variable} font-sans antialiased`}
+        style={{ fontFamily: "var(--font-plus-jakarta), Plus Jakarta Sans, system-ui, sans-serif" }}
       >
         <ThemeProvider
           attribute="class"
